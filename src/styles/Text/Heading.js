@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Text from './Text'
-import { primary } from '../Colors'
+import { primary, secondary } from '../Colors'
 
 const H1 = styled(Text)`
   font-family: 'Libre Baskerville', serif;
@@ -18,7 +18,7 @@ const H2 = styled(Text)`
   font-family: 'Libre Baskerville', serif;
   font-size: 3rem;
   font-weight: 400;
-  color: ${primary};
+  color: ${secondary};
   line-height: 4rem;
   text-align: left;
   margin: 20px 0;

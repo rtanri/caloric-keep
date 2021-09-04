@@ -1,6 +1,6 @@
 // branding colour
 const primary = '#24324A';
-const secondary = '#B05B3B';
+const secondary = '#5D534A';
 
 //  base colour
 const yellow = '#F2C05C';

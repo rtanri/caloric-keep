@@ -1,6 +1,7 @@
 import React from 'react'
 import * as R from 'ramda'
-import { Text, H1, H2, Section, Container, Spacer } from '../styles'
+import { Text, H1, H2, Section, Container, Card, CardHeader, CardBody, Flexbox } from '../styles'
+import { gray_2, gray_1, red, green } from '../styles'
 
 
 function Dashboard() {
@@ -10,13 +11,27 @@ function Dashboard() {
         <Section>
             <H1>Caloric Keep</H1>
 
-            <Container>
-                <H2>Check your Progress</H2>
-                <Text>I try DIY text</Text>
-                <Spacer />
-                <Text>This is poppins texts</Text>
-                <Spacer spacing={100} />
-                <Text>{plus}</Text>
+            <Container borderColor={gray_2}>
+                <H2>Last 7 days</H2>
+                <Flexbox>
+                    <Card color={green} />
+                    <Card color={green} >
+
+
+                        <CardHeader>
+                            Hello World
+                        </CardHeader>
+                        <CardBody>
+                            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sed enim luctus pharetra elementum ac nisl. Sed non lorem nunc. Ut pharetra leo blandit,
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sed enim luctus pharetra elementum ac nisl. Sed non lorem nunc. Ut pharetra leo blandit, </Text>
+                        </CardBody>
+                    </Card>
+                    <Card color={gray_1} />
+                    <Card color={green} />
+                    <Card />
+                    <Card color={red} />
+                </Flexbox>
+
             </Container>
 
         </Section>
