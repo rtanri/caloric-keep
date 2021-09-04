@@ -8,10 +8,10 @@ export {
       green,
       gray_1,
       gray_2,
-      gray_3,
       white,
       black,
       transparent
 } from "./Colors"
 export { Section, Container, Spacer, Flexbox } from './Layout'
 export { Card, CardBody, CardHeader } from './Cards'
+export { IconDelete } from './Icons'

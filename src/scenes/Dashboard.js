@@ -2,6 +2,7 @@ import React from 'react'
 import * as R from 'ramda'
 import { Text, H1, H2, Section, Container, Card, CardHeader, CardBody, Flexbox } from '../styles'
 import { gray_2, gray_1, red, green } from '../styles'
+import { IconDelete } from '../styles'
 
 
 function Dashboard() {
