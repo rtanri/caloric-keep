@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from 'linaria/react'
 import PropTypes from 'prop-types'
-import { transparent, black, gray_1, gray_2 } from '../Colors'
+import { transparent, black } from '../Colors'
 import { IconDelete } from '../Icons'
 
 const BaseCardHeader = styled.div`
@@ -21,6 +21,7 @@ const AbsoluteSpan = styled.span`
       right: 0;
       color: ${black};
       font-size: 22px;
+
       &:hover {
             opacity: 0.5;
             cursor: pointer;
