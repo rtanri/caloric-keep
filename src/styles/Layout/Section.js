@@ -2,6 +2,7 @@ import React from 'react'
 import { styled } from 'linaria/react'
 import PropTypes from 'prop-types'
 import { transparent } from '../Colors'
+import { MD } from '../MediaQueries'
 
 const BaseWrapper = styled.div`
       display: ${props => props.display};
@@ -18,6 +19,7 @@ const BaseWrapper = styled.div`
       border: ${props => props.border};
       border-color: ${props => props.borderColor};
       border-radius: ${props => (props.radius ? `${props.radius}px` : null)};
+      background-color: ${props => props.backgroundColor};
 `
 
 const Section = ({ children, ...props }) => {
@@ -58,6 +60,7 @@ Container.propTypes = {
       border: PropTypes.string,
       borderColor: PropTypes.string,
       radius: PropTypes.number,
+      backgroundColor: PropTypes.string,
 }
 
 Container.defaultProps = {

@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css';
+// import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,7 +11,6 @@ import Navbar from './components/Navbar'
 import Dashboard from './scenes/Dashboard/index'
 import LoginPage from './scenes/Login/index'
 import RegisterPage from './scenes/Register/index'
-
 
 
 function App() {

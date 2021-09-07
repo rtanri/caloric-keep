@@ -1,0 +1,9 @@
+{
+      "menu_bar.nav.dashboard": "Dashboard",
+      "menu_bar.nav.register": "Register",
+      "menu_bar.nav.login": "Login",
+      "dashboard.header": "Caloric Keep",
+      "dashboard.inner.weekly.header": "Last 7 days",
+      "login_page.header":"Login Account",
+      "Register_page.header":"Register New User"
+}
