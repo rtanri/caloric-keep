@@ -3,15 +3,16 @@ import { IntlProvider } from 'react-intl'
 import English from '../data/Languages/en.json'
 import Indonesia from '../data/Languages/id.json'
 
-export const Context = React.createContext()
+export const TranslationContext = React.createContext()
 
 const local = navigator.language;
 
 let lang;
-if (local === 'en') {
-      lang = English
-} else {
+
+if (local === 'id') {
       lang = Indonesia
+} else {
+      lang = English
 }
 
 const TranslationProvider = (props) => {
@@ -21,19 +22,20 @@ const TranslationProvider = (props) => {
       const handleLangChange = (e) => {
             const newLocale = e.target.value;
             setLocale(newLocale);
+            if (newLocale === 'en') {
+                  setMessages(English)
+            }
             if (newLocale === 'id') {
                   setMessages(Indonesia)
-            } else {
-                  setMessages(English)
             }
       }
       
       return (
-            <Context.Provider value={{ locale, handleLangChange }}>
+            <TranslationContext.Provider value={{ locale, handleLangChange }}>
                   <IntlProvider messages={messages} locale={locale}>
                         {props.children}
                   </IntlProvider>
-            </Context.Provider>
+            </TranslationContext.Provider>
 
       )
 }

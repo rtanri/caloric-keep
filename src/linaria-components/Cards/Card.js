@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from 'linaria/react'
 import PropTypes from 'prop-types'
-import { green, red, primary, secondary, gray_1, white } from '../Colors'
+import { gray_1, white } from '../Colors'
 
 const BaseCard = styled.div`
       display: ${props => props.display};

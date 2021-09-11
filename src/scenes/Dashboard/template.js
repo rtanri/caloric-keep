@@ -1,8 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import * as R from 'ramda'
-import { css } from 'linaria'
-import { Text, H1, H2, Section, Container, Card, CardHeader, CardBody, Flexbox } from '../../styles'
-import { gray_2, gray_1, red, green } from '../../styles'
+import { Text, H1, H2, Container, Card, CardHeader, CardBody, Flexbox } from '../../linaria-components'
+import { gray_2, gray_1, red, green } from '../../linaria-components'
 import { FormattedMessage } from 'react-intl'
 
 function DashboardPage() {

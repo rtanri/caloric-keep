@@ -1,15 +1,14 @@
 import { useContext } from "react";
 import { Menu, Button } from "antd";
 import { useHistory, Link } from "react-router-dom";
-import { Section } from '../styles'
 import { FormattedMessage } from 'react-intl'
 // import { AuthContext } from "./AuthProvider";
-import { Context } from './TranslationProvider'
+import { TranslationContext } from '../services/TranslationProvider'
 
 function Navbar() {
 //   const auth = useContext(AuthContext);
   const history = useHistory();
-  const context = useContext(Context);
+  const context = useContext(TranslationContext);
 
   const redirectToLogin = () => {
     history.push("/login");
@@ -36,7 +35,7 @@ function Navbar() {
 				</Menu.Item>
 				
 				<Menu.Item key="login" disabled>
-					<Button type="primary" onClick={redirectToLogin}>
+					<Button className="primary-button smaller-button" onClick={redirectToLogin}>
 						<FormattedMessage
                   id="menu_bar.nav.login"
                   defaultMessage="Login"
