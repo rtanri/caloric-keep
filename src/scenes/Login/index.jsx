@@ -6,30 +6,30 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { AuthContext } from '../../services/AuthProvider';
 
 function LoginPage(props) {
+	const auth = useContext(AuthContext);
+
 	const [isLoggingIn, setIsLoggingIn] = useState(false);
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 
-	const auth = useContext(AuthContext);
-	console.log(auth)
-
+	
 	const handleSubmit = async () => {
 		setIsLoggingIn(true);
-		console.log(1)
+		
 		const loginSuccess = await auth.login(email, password);
 		console.log(`${email} + ${password}`)
-		console.log("loginSuccess")
+		console.log("==loginSuccess==")
 		console.log(loginSuccess)
 
     if (loginSuccess) {
       notification.open({
         message: "Login Success",
-        placement: "bottomRight",
+        placement: "topRight",
       });
     } else {
       notification.open({
         message: "Login Failed",
-        placement: "bottomRight",
+        placement: "topRight",
       });
     }
     setIsLoggingIn(false);
@@ -53,7 +53,8 @@ function LoginPage(props) {
           // onFinish={onFinish}
 				>
 				<div className="login__form-input-wrapper">
-          <Form.Item
+					<Form.Item
+						id="email-login"
             name="email"
             rules={[{ required: true, message: "Please input your Email!" }]}
           >
@@ -64,7 +65,8 @@ function LoginPage(props) {
             />
           </Form.Item>
 
-          <Form.Item
+					<Form.Item
+						id="password-login"
             name="password"
             rules={[{ required: true, message: "key in your password" }]}
           >

@@ -17,7 +17,6 @@ import Dashboard from './scenes/Dashboard/index'
 import LoginPage from './scenes/Login/index'
 import RegisterPage from './scenes/Register/index'
 
-
 getFirebaseInstance();
 
 function App() {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { useCookies } from "react-cookie";
 import { getFirebaseInstance } from "./firebase/firebase";
 
@@ -12,7 +12,7 @@ const AuthUserIDCookieName = "auth_user_id";
 // to prep states before transfering to all componentns
 export default function AuthProvider({ children }) {
   const firebase = getFirebaseInstance();
-  const auth = firebase.auth
+  const auth = getAuth();
 
   const [cookies, setCookie, removeCookie] = useCookies(["auth_token"]);
   const [isLoading] = useState(true);
@@ -29,26 +29,21 @@ export default function AuthProvider({ children }) {
 
   const register = async (email, password) => {
     try {
-      const registerResp = await auth.createUserWithEmailAndPassword(email, password);
-      console.log(registerResp);
+      const registerResp = await createUserWithEmailAndPassword(auth, email, password);
       const tokenResp = await registerResp.user.getIdToken();
       setToken(tokenResp);
-      setCookie(AuthTokenCookieName, tokenResp, { path: "/", maxAge: 10800 });
+      // setCookie(AuthTokenCookieName, tokenResp, { path: "/", maxAge: 10800 });
     } catch (err) {
       setToken(null);
       removeCookie(AuthTokenCookieName);
       return false;
     }
-    console.log('register in prodiver')
-    console.log('register in prodiver')
     return true;
   };
 
   const login = async (email, password) => {
     try {
-      const loginResp = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password);
+      const loginResp = await signInWithEmailAndPassword(auth, email, password);
       const userToken = await loginResp.user.getIdToken();
 
       console.log("userToken");
@@ -57,7 +52,7 @@ export default function AuthProvider({ children }) {
       setToken(userToken);
       setAuthUserID(loginResp.user.uid);
       // setAuthUser(loginResp.user.toJSON());
-      setCookie(AuthTokenCookieName, userToken, { path: "/", maxAge: 7200 });
+      setCookie(AuthTokenCookieName, userToken, { path: "/", maxAge: 10800 });
       setCookie(AuthUserIDCookieName, loginResp.user.uid);
 
       return true;

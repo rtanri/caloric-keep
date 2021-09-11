@@ -42,7 +42,7 @@ function Navbar() {
             />
 					</Button>
 				</Menu.Item>
-				<Menu.Item key="login" disabled>
+				<Menu.Item key="translation" disabled>
             <select value={context.locale} onChange={context.handleLangChange}>
                   <option value="en">English</option>
                   <option value="id">Indonesia</option>

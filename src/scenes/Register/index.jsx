@@ -25,25 +25,23 @@ function RegisterPage(props) {
 			})
 			return
 		}
-		
+		console.log('0')
 		let registerSuccess = await auth.register(email, password);
-		console.log(registerSuccess)
+		
 
 		if (registerSuccess) {
 			console.log(1)
 			notification.open({
 				message: "Registration Success",
 				placement: "topRight",
-			});
+			})
 		} else {
-			console.log(2)
 			notification.open({
 				message: "Registration Failed",
 				placement: "topRight",
-			});
-			console.log(3)
-			setIsSigningIn(false)
+			})
 		}
+		setIsSigningIn(false)
 	}
 		return (
 			<Container>

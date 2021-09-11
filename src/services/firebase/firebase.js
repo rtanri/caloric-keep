@@ -1,11 +1,12 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-      apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-      authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-      projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-      appId: process.env.REACT_APP_FIREBASE_APP_ID,
-      storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET
+      apiKey: "AIzaSyBVy5O0ntBRU9X6n8ev7fDlhrh1WEKfsAk",
+      authDomain: "caloric-keep.firebaseapp.com",
+      projectId: "caloric-keep",
+      storageBucket: "caloric-keep.appspot.com",
+      messagingSenderId: "230941769316",
+      appId: "1:230941769316:web:dd7240c4db8bdbc83ba971"
 };
 
 let FirebaseApp = null;
