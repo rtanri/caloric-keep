@@ -1,5 +1,4 @@
 import React from 'react'
-// import './App.scss';
 import './sass/style.scss'
 import {
   BrowserRouter as Router,
@@ -10,8 +9,12 @@ import {
 import { Section } from './linaria-components';
 import { getFirebaseInstance } from './services/firebase/firebase';
 
+import TranslationProvider from './services/TranslationProvider'
 import AuthProvider from './services/AuthProvider';
+import { CookiesProvider } from 'react-cookie';
 
+import GuestOnlyRoute from './components/GuestOnlyRoute';
+import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar'
 import Dashboard from './scenes/Dashboard/index'
 import LoginPage from './scenes/Login/index'
@@ -21,21 +24,29 @@ getFirebaseInstance();
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Section>
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/register" component={RegisterPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/">
-              <Redirect to="/login" component={LoginPage} />
-            </Route>
-          </Section>
-        </div>
-      </Router>
-    </AuthProvider>
+    <CookiesProvider>
+      <AuthProvider>
+        <TranslationProvider>
+          <Router>
+            <div className="App">
+              <Navbar />
+              <Section>
+                <Switch>
+                  <PrivateRoute path="/dashboard" component={Dashboard} />
+                  <GuestOnlyRoute path="/register" component={RegisterPage} />
+                  <GuestOnlyRoute path="/login" component={LoginPage} />
+
+                  <Route path="/">
+                    <Redirect to="/login" component={LoginPage} />
+                  </Route>
+                </Switch>
+
+              </Section>
+            </div>
+          </Router>
+        </TranslationProvider>
+      </AuthProvider>
+    </CookiesProvider>
   );
 }
 

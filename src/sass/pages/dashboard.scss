@@ -1,0 +1,115 @@
+.daily-card__span--line-break::before{
+  content:"\a";
+  white-space: pre;
+}
+
+.hidden{
+  display: none;
+}
+
+.card--meal-status-wrapper{
+  margin-bottom: 10px;
+}
+
+.card--meal-record-wrapper{
+  padding-left: 10px;
+  border-left: 3px dotted #E0E0E0;
+}
+
+// modal
+
+.modal-background {
+  width: 1000px;
+  height: 500px;
+  background-color: goldenrod;
+}
+
+.modal-wrapper{
+  width: 600px;
+  min-height: 500px;
+  border-radius: 10px;
+  position: absolute;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 40px;
+}
+
+.modal-header {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 30px;
+  font-family: "Lato";
+  color: "#5D534A";
+  margin-bottom:-10px;
+}
+
+.close-button {
+  display: flex;
+  justify-content: flex-end;
+  // width: 25px;
+  background-color: transparent;
+  border:none;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: "arial";
+  margin-bottom: -20px;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  text-align: center;
+  margin-top: 0;
+}
+
+.modal-footer {
+  flex: 20%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.form-item-meal{
+  width: 250px;
+}
+
+.form-item-calories{
+  width: 180px;
+}
+
+.meal-name-input{
+  height: 50px;
+}
+
+.calories-input{
+  width: 50px;
+  height: 50px;
+}
+
+
+.food-log-form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.food-log-form__input--wrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 30px 20px 0 20px;
+  margin-bottom: 30px;
+  border: 1px solid #E0E0E0;
+}
+// modal stop

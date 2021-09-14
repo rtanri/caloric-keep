@@ -22,83 +22,83 @@ const BaseWrapper = styled.div`
 `
 
 const Section = ({ children, ...props }) => {
-      return <BaseWrapper {...props} >{children}</BaseWrapper>
+  return <BaseWrapper {...props} >{children}</BaseWrapper>
 }
 
 Section.propTypes = {
-      position: PropTypes.string,
-      display: PropTypes.string,
-      minHeight: PropTypes.string,
-      padding: PropTypes.string,
-      maxWidth: PropTypes.string,
-      margin: PropTypes.string,
+  position: PropTypes.string,
+  display: PropTypes.string,
+  minHeight: PropTypes.string,
+  padding: PropTypes.string,
+  maxWidth: PropTypes.string,
+  margin: PropTypes.string,
 }
 
 Section.defaultProps = {
-      display: 'block',
-      position: 'relative',
-      minHeight: '1px',
-      margin: '0 auto',
-      padding: '40px 0',
-      maxWidth: '1660px',
-      width: '100%',
+  display: 'block',
+  position: 'relative',
+  minHeight: '1px',
+  margin: '0 auto',
+  padding: '40px 0',
+  maxWidth: '1660px',
+  width: '100%',
 }
 
 
 const Container = ({ children, ...props }) => {
-      return <BaseWrapper {...props} >{children}</BaseWrapper>
+  return <BaseWrapper {...props} >{children}</BaseWrapper>
 }
 
 Container.propTypes = {
-      position: PropTypes.string,
-      display: PropTypes.string,
-      minHeight: PropTypes.string,
-      padding: PropTypes.string,
-      maxWidth: PropTypes.string,
-      margin: PropTypes.string,
-      border: PropTypes.string,
-      borderColor: PropTypes.string,
-      radius: PropTypes.number,
-      backgroundColor: PropTypes.string,
+  position: PropTypes.string,
+  display: PropTypes.string,
+  minHeight: PropTypes.string,
+  padding: PropTypes.string,
+  maxWidth: PropTypes.string,
+  margin: PropTypes.string,
+  border: PropTypes.string,
+  borderColor: PropTypes.string,
+  radius: PropTypes.number,
+  backgroundColor: PropTypes.string,
 }
 
 Container.defaultProps = {
-      display: 'block',
-      position: 'relative',
-      minHeight: '40px',
-      margin: '0 auto',
-      padding: '20px 5%',
-      border: '3px solid #FFFFFF',
-      borderColor: transparent,
-      radius: 10,
+  display: 'block',
+  position: 'static',
+  minHeight: '40px',
+  margin: '0 auto',
+  padding: '20px 5%',
+  border: '3px solid #FFFFFF',
+  borderColor: transparent,
+  radius: 10,
 }
 
 
 const Flexbox = ({ children, ...props }) => {
-      return <BaseWrapper {...props} >{children}</BaseWrapper>
+  return <BaseWrapper {...props} >{children}</BaseWrapper>
 }
 
 Flexbox.propTypes = {
-      position: PropTypes.string,
-      display: PropTypes.string,
-      flexDirection: PropTypes.string,
-      justifyContent: PropTypes.string,
-      alignItem: PropTypes.string,
-      minHeight: PropTypes.string,
-      padding: PropTypes.string,
-      margin: PropTypes.string,
-      wrap: PropTypes.oneOf(['wrap', 'nowrap', 'wrap-reverse']),
+  position: PropTypes.string,
+  display: PropTypes.string,
+  flexDirection: PropTypes.string,
+  justifyContent: PropTypes.string,
+  alignItem: PropTypes.string,
+  minHeight: PropTypes.string,
+  padding: PropTypes.string,
+  margin: PropTypes.string,
+  wrap: PropTypes.oneOf(['wrap', 'nowrap', 'wrap-reverse']),
 }
 
 Flexbox.defaultProps = {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'start',
-      alignItem: 'left',
-      minHeight: 'auto',
-      padding: 0,
-      margin: 0,
-      wrap: 'wrap',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'start',
+  alignItem: 'left',
+  minHeight: 'auto',
+  padding: '0',
+  margin: '0',
+  wrap: 'wrap',
 }
 
 

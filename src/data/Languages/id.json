@@ -1,7 +1,8 @@
 {
       "menu_bar.nav.dashboard": "Papan Kerja",
-      "menu_bar.nav.register": "Daftar Baru",
-      "menu_bar.nav.login": "Masuk Akun",
+      "menu_bar.nav.register": "Daftar",
+      "menu_bar.nav.login": "Masuk",
+      "menu_bar.nav.logout": "Keluar",
       "dashboard.header": "Tempat Hitung Kalori",
       "dashboard.inner.weekly.header": "Dalam 7 hari terakhir",
       "login_page.header":"Form Masuk Pelanggan",

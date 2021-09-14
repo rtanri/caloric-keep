@@ -1,13 +1,13 @@
 import React from 'react'
 import { styled } from 'linaria/react'
-import { transparent, black } from '../Colors'
+import { transparent, black, secondary, grey_1, grey_2 } from '../Colors'
 import { IconDelete } from '../Icons'
 
 const BaseCardHeader = styled.div`
       display: inline-flex;
       position: relative;
       min-height: 30px;
-      font-weight: 700;
+      font-weight: 900;
       font-size: 24px;
       font-family: 'Roboto';
       background-color: ${transparent};
@@ -28,10 +28,10 @@ const AbsoluteSpan = styled.span`
 `
 
 export const CardHeader = ({ children, ...props }) => {
-      return <BaseCardHeader {...props} >
-            {children}
-            <AbsoluteSpan>{IconDelete}</AbsoluteSpan>
-      </BaseCardHeader>
+  return <BaseCardHeader {...props} >
+    {children}
+    <AbsoluteSpan>{IconDelete}</AbsoluteSpan>
+  </BaseCardHeader>
 }
 
 

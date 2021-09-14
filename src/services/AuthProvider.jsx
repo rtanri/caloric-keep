@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useCookies } from "react-cookie";
 import { getFirebaseInstance } from "./firebase/firebase";
 
@@ -17,7 +17,7 @@ export default function AuthProvider({ children }) {
   const [cookies, setCookie, removeCookie] = useCookies(["auth_token"]);
   const [isLoading] = useState(true);
   const [token, setToken] = useState(null);
-  const [authUser, setAuthUser] = useState(null);
+  // const [authUser, setAuthUser] = useState(null);
   const [authUserID, setAuthUserID] = useState(null);
 
   useEffect(() => {
@@ -61,10 +61,11 @@ export default function AuthProvider({ children }) {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
     setToken(null);
-    removeCookie(AuthTokenCookieName);
-    firebase.auth().signOut();
+    await removeCookie(AuthTokenCookieName);
+    await removeCookie(AuthUserIDCookieName);
+    signOut(auth);
   };
 
   return (

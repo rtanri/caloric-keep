@@ -2,13 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import 'antd/dist/antd.css'
-import TranslationProvider from './services/TranslationProvider'
 
 ReactDOM.render(
   <React.StrictMode>
-    <TranslationProvider>
-      <App />
-    </TranslationProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

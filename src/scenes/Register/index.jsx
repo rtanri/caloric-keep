@@ -19,7 +19,7 @@ function RegisterPage(props) {
 		setIsSigningIn(true);
 
 		if (password !== confirmPassword) {
-			notification.open({
+			notification.error.open({
 				message: "Password and Confirm-Password is not match",
 				placement: "topRight",
 			})
@@ -30,13 +30,12 @@ function RegisterPage(props) {
 		
 
 		if (registerSuccess) {
-			console.log(1)
-			notification.open({
+			notification.success({
 				message: "Registration Success",
 				placement: "topRight",
 			})
 		} else {
-			notification.open({
+			notification.error({
 				message: "Registration Failed",
 				placement: "topRight",
 			})
@@ -102,7 +101,10 @@ function RegisterPage(props) {
 								disabled={isSigningIn}
 								onClick={handleSubmit}
 							>
-								Sign-in
+                <FormattedMessage
+                  id="menu_bar.nav.register"
+                  defaultMessage="Register"
+                />
 							</Button>
 						</Form.Item>
 					</div>
