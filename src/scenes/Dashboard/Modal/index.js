@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
-import { H2 } from '../../../linaria-components';
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { collection, addDoc } from "firebase/firestore";
+import { firebaseApp, db } from '../../../services/firebase/firebase';
+import { Text } from '../../../linaria-components';
 
 
 const ModalInput = ({ closeModal }) => {
@@ -15,38 +17,59 @@ const ModalInput = ({ closeModal }) => {
   useEffect(() => {
     setModalText(modalContent)
     return () => {
-
     }
   }, [])
 
-  const handleOk = () => {
-    setModalText('Saving data.. this will be closed once finished');
+  const testCardID = "7GvhOprgJf3qSHCfCdNw"
+
+  // const onFinish = values => {
+  const handleOK = async () => {
+    setModalText('Saving data...');
     setIsLoading(true);
-    setTimeout(() => {
+
+    try {
+      const docRef = await addDoc(collection(db, "meals"), {
+        meal_name: mealName,
+        calories: calories,
+        card_id: testCardID
+      });
+      console.log("Record written with ID: ", docRef.id);
       setIsLoading(false);
+      setModalText('Your input is saved succesfully');
+    }
+    catch (e) {
+      setIsLoading(false);
+      setModalText('Input Failed');
+      console.log("Error adding document: ", e);
+    }
+
+    setTimeout(() => {
       closeModal()
-    }, 2000);
+    }, 2000)
   };
 
   const handleCancel = () => {
     console.log('Clicked cancel button');
     closeModal()
+    setIsLoading(false);
   };
 
   const modalContent = () => {
-
     return (
-      <Form className="food-log-form">
+      <Form className="food-log-form"
+      // initialValues={{ remember: true }} onFinish={onFinish}
+      >
         <div className="food-log-form__input--wrapper">
           <Form.Item
             id="meal-name"
-            name="Food"
-            className="form-item-meal"
+            name="food"
+            className="form-item-label"
             rules={[{ required: true, message: "Enter your meal name" }]}
           >
+            <Text>Meal Name</Text>
             <Input
               prefix={<EditOutlined className="site-form-item-icon" />}
-              placeholder="Meal (e.g. burrito)"
+              placeholder="e.g. burrito, salad"
               onChange={e => (setMealName(e.target.value))}
               className="meal-name-input"
             />
@@ -55,41 +78,14 @@ const ModalInput = ({ closeModal }) => {
           <Form.Item
             id="calories"
             name="calories"
-            className="form-item-calories"
+            className="form-item-label"
             rules={[{ required: true, message: "How much is the calories (in kcal)?" }]}
           >
+            <Text>Calory Intake (in kcal)</Text>
             <Input
               prefix={<PlusOutlined className="site-form-item-icon" />}
-              placeholder="Calories (700 kcal)"
+              placeholder="e.g. 250 or 800"
               onChange={e => (setCalories(e.target.value))}
-              className="calories-input"
-            />
-          </Form.Item>
-        </div>
-
-        <div className="food-log-form__input--wrapper">
-          <Form.Item
-            id="other-meal-name"
-            name="other-food"
-            className="form-item-meal"
-          >
-            <Input
-              prefix={<EditOutlined className="site-form-item-icon" />}
-              placeholder="Other Meal (e.g. mcspicy)"
-              onChange={e => (setOtherMealName(e.target.value))}
-              className="meal-name-input"
-            />
-          </Form.Item>
-
-          <Form.Item
-            id="other-calories"
-            name="other-calories"
-            className="form-item-calories"
-          >
-            <Input
-              prefix={<PlusOutlined className="site-form-item-icon" />}
-              placeholder="Calories (1200 kcal)"
-              onChange={e => (setOtherCalories(e.target.value))}
               className="calories-input"
             />
           </Form.Item>
@@ -99,7 +95,8 @@ const ModalInput = ({ closeModal }) => {
   }
 
   return (
-    <div clasName="modal-background">
+    <div>
+      <div className="modal-background" onClick={() => closeModal()}></div>
       <div className="modal-wrapper">
         <button className="close-button" onClick={() => closeModal()} >X</button>
         <div className="modal-header">
@@ -110,9 +107,11 @@ const ModalInput = ({ closeModal }) => {
         </div>
         <div className="modal-footer">
           <Button className="secondary-button" onClick={handleCancel} >Cancel</Button>
-          <Button className="primary-button" onClick={handleOk} loading={isLoading} >Save</Button>
+          <Button className="primary-button" loading={isLoading} onClick={handleOK}>Save</Button>
         </div>
+
       </div>
+
 
     </div>
   );

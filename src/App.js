@@ -7,7 +7,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { Section } from './linaria-components';
-import { getFirebaseInstance } from './services/firebase/firebase';
+import { firebaseApp } from './services/firebase/firebase';
 
 import TranslationProvider from './services/TranslationProvider'
 import AuthProvider from './services/AuthProvider';
@@ -20,7 +20,7 @@ import Dashboard from './scenes/Dashboard/index'
 import LoginPage from './scenes/Login/index'
 import RegisterPage from './scenes/Register/index'
 
-getFirebaseInstance();
+// firebaseApp;
 
 function App() {
   return (

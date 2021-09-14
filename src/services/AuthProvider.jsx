@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useCookies } from "react-cookie";
-import { getFirebaseInstance } from "./firebase/firebase";
+import { firebaseApp } from './firebase/firebase'
 
 // start initializing the context - empty object
 export const AuthContext = React.createContext({});
@@ -11,7 +11,7 @@ const AuthUserIDCookieName = "auth_user_id";
 
 // to prep states before transfering to all componentns
 export default function AuthProvider({ children }) {
-  const firebase = getFirebaseInstance();
+  
   const auth = getAuth();
 
   const [cookies, setCookie, removeCookie] = useCookies(["auth_token"]);
@@ -25,7 +25,7 @@ export default function AuthProvider({ children }) {
       setToken(cookies[AuthTokenCookieName]);
       setAuthUserID(cookies[AuthUserIDCookieName]);
     }
-  }, [cookies, firebase]);
+  }, [cookies]);
 
   const register = async (email, password) => {
     try {

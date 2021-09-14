@@ -17,9 +17,11 @@ function DailyCard({ color, title, meal1, meal2, meal3, meal4, total, remain, on
     setOpenModal(true)
   }
 
+  const testCardID = "7GvhOprgJf3qSHCfCdNw"
+
   return (
     <>
-      <Card color={color} className="card" onClick={handleOnClick}>
+      <Card color={color} className="card" onClick={handleOnClick} id={testCardID}>
         <CardHeader>
           {title}
         </CardHeader>
