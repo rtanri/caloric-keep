@@ -11,6 +11,21 @@ button.primary-button{
       border: 1px solid #5D534A;
 }
 
+button.primary-button--full-width{
+      display: inline-block;
+      background-color: #5D534A;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      width: 100%;
+      height: 45px;
+      border-radius: 5px;
+      border: 1px solid #5D534A;
+}
+
+
+
 button.primary-button:hover{
       opacity: 0.85;
       background-color: #5D534A;

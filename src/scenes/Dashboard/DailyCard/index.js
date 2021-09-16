@@ -3,7 +3,7 @@ import { Text, Card, CardHeader, CardBody } from '../../../linaria-components'
 import ModalInput from '../Modal'
 
 
-function DailyCard({ color, title, meal1, meal2, meal3, meal4, total, remain, onClick }) {
+function DailyCard({ color, title, meal1, meal2, meal3, meal4, meal5, total, remain, onClick, key }) {
   const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
@@ -13,7 +13,6 @@ function DailyCard({ color, title, meal1, meal2, meal3, meal4, total, remain, on
   }, [])
 
   const handleOnClick = () => {
-    console.log("Hello Card is clicked")
     setOpenModal(true)
   }
 

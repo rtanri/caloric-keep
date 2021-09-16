@@ -106,8 +106,7 @@ const ModalInput = ({ closeModal }) => {
           {modalText}
         </div>
         <div className="modal-footer">
-          <Button className="secondary-button" onClick={handleCancel} >Cancel</Button>
-          <Button className="primary-button" loading={isLoading} onClick={handleOK}>Save</Button>
+          <Button className="primary-button--full-width" loading={isLoading} onClick={handleOK}>Save</Button>
         </div>
 
       </div>
