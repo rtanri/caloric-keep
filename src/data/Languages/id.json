@@ -6,5 +6,9 @@
       "dashboard.header": "Tempat Hitung Kalori",
       "dashboard.inner.weekly.header": "Dalam 7 hari terakhir",
       "login_page.header":"Form Masuk Pelanggan",
-      "Register_page.header":"Registrasi Pelanggan Baru"
+      "Register_page.header":"Registrasi Pelanggan Baru",
+      "modal.form.header": "Catat Makanan",
+      "modal.input.meal_name":"Nama Makanan",
+      "modal.input.calory_intake":"Kalori (dalam kcal)",
+      "modal.button.submit":"Simpan"
 }

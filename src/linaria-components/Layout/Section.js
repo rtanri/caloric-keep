@@ -39,7 +39,7 @@ Section.defaultProps = {
   position: 'relative',
   minHeight: '1px',
   margin: '0 auto',
-  padding: '40px 0',
+  padding: '40px 2%',
   maxWidth: '1660px',
   width: '100%',
 }
@@ -67,7 +67,7 @@ Container.defaultProps = {
   position: 'static',
   minHeight: '40px',
   margin: '0 auto',
-  padding: '20px 5%',
+  padding: '20px 2%',
   border: '3px solid #FFFFFF',
   borderColor: transparent,
   radius: 10,

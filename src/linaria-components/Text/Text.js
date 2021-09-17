@@ -46,7 +46,7 @@ Text.defaultProps = {
   size: '18px',
   lineHeight: '2rem',
   color: primary,
-  margin: "0",
+  margin: '0',
   textAlign: 'left',
   display: 'block'
 }

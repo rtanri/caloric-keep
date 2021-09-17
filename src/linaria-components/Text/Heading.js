@@ -8,7 +8,7 @@ const H1 = styled(Text)`
   font-weight: 400;
   color: ${primary};
   line-height: 4.8rem;
-  text-align: center;
+  text-align: 'center';
   margin: 30px 0;
   display: block;
 `
@@ -20,10 +20,11 @@ const H2 = styled(Text)`
   font-weight: 400;
   color: ${secondary};
   line-height: 4rem;
-  text-align: left;
+  text-align: 'left';
   margin: 20px 0;
   display: block;
 `
+
 H2.displayName = 'H2'
 
 export { H1, H2 }

@@ -44,7 +44,7 @@ function RegisterPage(props) {
 	}
 		return (
 			<Container>
-				<H1>
+				<H1 textAlign="center">
 					<FormattedMessage
 						id="Register_page.header"
 						defaultMessage="Register New User"

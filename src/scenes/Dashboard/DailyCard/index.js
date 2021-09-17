@@ -3,7 +3,8 @@ import { Text, Card, CardHeader, CardBody } from '../../../linaria-components'
 import ModalInput from '../Modal'
 
 
-function DailyCard({ color, title, meal1, meal2, meal3, meal4, meal5, total, remain, onClick, key }) {
+
+function DailyCard({ id, color, title, user, meal1, meal2, meal3, meal4, meal5, total, remain, onClick }) {
   const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
@@ -16,11 +17,11 @@ function DailyCard({ color, title, meal1, meal2, meal3, meal4, meal5, total, rem
     setOpenModal(true)
   }
 
-  const testCardID = "7GvhOprgJf3qSHCfCdNw"
+  const testCardUserID = "7GvhOprgJf3qSHCfCdNw"
 
   return (
     <>
-      <Card color={color} className="card" onClick={handleOnClick} id={testCardID}>
+      <Card color={color} className="card" onClick={handleOnClick} id={testCardUserID}>
         <CardHeader>
           {title}
         </CardHeader>
@@ -79,6 +80,7 @@ const renderMealRecord = () => {
       mealRecord[i].parentElement.classList.remove("hidden")
     }
   }
+
 }
 
 

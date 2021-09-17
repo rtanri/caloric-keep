@@ -47,7 +47,7 @@ function Navbar() {
             </Link>
           </Menu.Item>
           
-          <Menu.Item key="login" disabled>
+          <Menu.Item key="login" disabled className="menu-item--left">
             <Button className="primary-button smaller-button" onClick={redirectToLogin}>
               <FormattedMessage
                 id="menu_bar.nav.login"
@@ -58,10 +58,12 @@ function Navbar() {
           </>
         )}
 
-				<Menu.Item key="translation" disabled>
+				<Menu.Item key="translation" disabled className="menu-select--styling">
             <select value={context.locale} onChange={context.handleLangChange}>
               <option value="en">English</option>
               <option value="id">Indonesia</option>
+              <option value="ch">Chinese</option>
+              <option value="jp">Japanese</option>
             </select>
         </Menu.Item>
       

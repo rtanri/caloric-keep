@@ -6,5 +6,9 @@
       "dashboard.header": "Caloric Keep",
       "dashboard.inner.weekly.header": "Last 7 days",
       "login_page.header":"Login Account",
-      "Register_page.header":"Register New User"
+      "Register_page.header":"Register New User",
+      "modal.form.header": "Record your meal",
+      "modal.input.meal_name":"Meal Name",
+      "modal.input.calory_intake":"Calory Intake (in kcal)",
+      "modal.button.submit":"Save"
 }

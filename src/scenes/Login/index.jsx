@@ -32,7 +32,7 @@ function LoginPage(props) {
 
 			return (
 			<Container>
-				<H1>
+				<H1 textAlign="center">
 					<FormattedMessage
 						id="login_page.header"
 						defaultMessage="Login Account"

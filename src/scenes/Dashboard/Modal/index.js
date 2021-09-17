@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
+import { FormattedText } from 'react-intl'
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { collection, addDoc } from "firebase/firestore";
+import { FormattedMessage } from 'react-intl'
 import { firebaseApp, db } from '../../../services/firebase/firebase';
-import { Text } from '../../../linaria-components';
+import { Text, H2 } from '../../../linaria-components';
 
 
 const ModalInput = ({ closeModal }) => {
@@ -66,7 +68,12 @@ const ModalInput = ({ closeModal }) => {
             className="form-item-label"
             rules={[{ required: true, message: "Enter your meal name" }]}
           >
-            <Text>Meal Name</Text>
+            <Text>
+              <FormattedMessage
+                id="modal.input.meal_name"
+                defaultMessage="Meal Name"
+              />
+            </Text>
             <Input
               prefix={<EditOutlined className="site-form-item-icon" />}
               placeholder="e.g. burrito, salad"
@@ -81,7 +88,12 @@ const ModalInput = ({ closeModal }) => {
             className="form-item-label"
             rules={[{ required: true, message: "How much is the calories (in kcal)?" }]}
           >
-            <Text>Calory Intake (in kcal)</Text>
+            <Text>
+              <FormattedMessage
+                id="modal.input.calory_intake"
+                defaultMessage="Calory Intake (in kcal)"
+              />
+            </Text>
             <Input
               prefix={<PlusOutlined className="site-form-item-icon" />}
               placeholder="e.g. 250 or 800"
@@ -100,13 +112,23 @@ const ModalInput = ({ closeModal }) => {
       <div className="modal-wrapper">
         <button className="close-button" onClick={() => closeModal()} >X</button>
         <div className="modal-header">
-          <h1>Record your meal</h1>
+          <H2 textAlign="center">
+            <FormattedMessage
+              id="modal.form.header"
+              defaultMessage="Record your meal"
+            />
+          </H2>
         </div>
         <div className="modal-body">
           {modalText}
         </div>
         <div className="modal-footer">
-          <Button className="primary-button--full-width" loading={isLoading} onClick={handleOK}>Save</Button>
+          <Button className="primary-button--full-width" loading={isLoading} onClick={handleOK}>
+            <FormattedMessage
+              id="modal.button.submit"
+              defaultMessage="Save"
+            />
+          </Button>
         </div>
 
       </div>

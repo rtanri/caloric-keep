@@ -9,13 +9,19 @@ import { collection, getDocs, where } from "firebase/firestore";
 import { db } from '../../services/firebase/firebase';
 
 
+const metabolism_rate = 1200;
+
 const DashboardPage = () => {
   // const plus = R.add(2, 3);
   const [cardDeck, setCardDeck] = useState([])
+  const COLOR_RED = { red }
+  const COLOR_GREEN = { green }
+
 
   useEffect(() => {
     getAllCard()
   }, [])
+
 
   const getAllCard = async () => {
 
@@ -23,25 +29,36 @@ const DashboardPage = () => {
       .then(docResp => {
         let docArray = [];
         docResp.forEach((card) => {
+          let total = 0
+          let remain = 0
+          let card_color = COLOR_GREEN.green
+
 
           if (card.data().meals) {
             let mealArray = card.data().meals
             let mealz = []
-            let total = 0
+
             if (mealArray[0]) {
 
               for (const key of mealArray) {
                 mealz.push(`${key.name} (${key.calories})`)
-
                 total += parseInt(key.calories);
               }
+              if (total >= metabolism_rate) {
+                card_color = COLOR_RED.red
+              }
+              remain = metabolism_rate - total
+              console.log(remain)
             }
 
             docArray.push({
               key: card.id,
+              id: card.id,
               title: card.data().title,
               user: card.data().user_id,
+              color: card_color,
               total: total,
+              remain: remain,
               meal1: mealz[0],
               meal2: mealz[1],
               meal3: mealz[2],
@@ -53,8 +70,12 @@ const DashboardPage = () => {
 
           docArray.push({
             key: card.id,
+            id: card.id,
             title: card.data().title,
             user: card.data().user_id,
+            color: card_color,
+            total: total,
+            remain: remain,
           })
         }
         )
@@ -64,13 +85,13 @@ const DashboardPage = () => {
       .catch(err => {
         console.log(err)
       })
-
+    console.log(typeof metabolism_rate)
     setCardDeck(result)
   }
 
 
   return <div>
-    <H1>
+    <H1 textAlign="center">
       <FormattedMessage
         id="dashboard.header"
         defaultMessage="Caloric Keep"
@@ -87,26 +108,20 @@ const DashboardPage = () => {
       <Flexbox>
         {cardDeck && cardDeck.map((card) => (
           <DailyCard
-            color={green}
+            color={card.color}
             title={card.title}
             key={card.key}
+            id={card.key}
+            user={card.user}
             meal1={card.meal1}
             meal2={card.meal2}
             meal3={card.meal3}
             meal4={card.meal4}
             meal5={card.meal5}
             total={card.total}
+            remain={card.remain}
           />
         ))}
-        <DailyCard color={green} title="Sat 11st Sep"
-          meal1="cereal (300)"
-          meal2="chicken rice (650) "
-          meal3="dragon fruits (400) "
-          meal4="cakwe (200)"
-          meal5="porridge (250)"
-          total="1550"
-          remain="550"
-        />
       </Flexbox>
 
     </Container>

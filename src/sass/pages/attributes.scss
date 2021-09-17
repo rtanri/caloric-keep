@@ -88,3 +88,19 @@ button.smaller-button{
 button.smaller-button:hover{
 			font-size: 0.9em;
 }
+
+.menu-item--left{
+  position:absolute;
+  right: 10px;
+}
+
+.menu-select--styling{
+  width: 200px;
+  
+  select{
+    width: 100%;
+    height: 70%;
+    color: #333;
+    padding-left: 10px;
+  }
+}
