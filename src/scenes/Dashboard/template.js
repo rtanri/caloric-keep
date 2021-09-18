@@ -16,10 +16,11 @@ const DashboardPage = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [openNewCardModal, setOpenNewCardModal] = useState(false)
   const [userID, setUserID] = useState("")
+  const [metaRate, setMetaRate] = useState([2100, 1800, 1650]);
+  const [printedSMR, setPrintedSMR] = useState(2100)
 
   const COLOR_RED = { red }
   const COLOR_GREEN = { green }
-  const metabolism_rate = 1900;
 
   useEffect(() => {
     setIsLoading(true)
@@ -44,7 +45,7 @@ const DashboardPage = () => {
     let docArray = []
 
     cardSnapshot.forEach((doc) => {
-      // console.log(doc.id)
+
       let currentCard = doc.data()
       currentCard.id = doc.id
       let total = 0
@@ -61,10 +62,10 @@ const DashboardPage = () => {
             foodData.push(`${key.name} (${key.calories})`)
             total += parseInt(key.calories);
           }
-          if (total >= metabolism_rate) {
+          if (total >= printedSMR) {
             card_color = COLOR_RED.red
           }
-          remain = metabolism_rate - total
+          remain = printedSMR - total
         }
 
         docArray.push({
@@ -102,28 +103,45 @@ const DashboardPage = () => {
     setOpenNewCardModal(true)
   }
 
+  const Add = metaRate.map(Add => Add)
+
+  const handleMetaRateDropdown = (e) => {
+    setPrintedSMR(metaRate[e.target.value])
+  }
+
   if (isLoading) {
     return (<Skeleton active={true} />)
   }
 
   return (
-    <div>
-      <H1 textAlign="center">
-        <FormattedMessage
-          id="dashboard.header"
-          defaultMessage="Caloric Keep"
-        />
-      </H1>
-      <div className="dashboard__button--new-card">
-        <Button
-          className="primary-button--full-width"
-          onClick={handleAddNewCard}
-        >
-          <FormattedMessage
-            id="dashboard.button.new_card"
-            defaultMessage="Add card"
-          />
-        </Button>
+    <>
+      <div className="dashboard-setting--wrapper">
+        <div className="dashboard__metabolism-rate--wrapper">
+          <Text color={secondary} display="inline">
+            <FormattedMessage
+              id="dashboard.metabolism.rate"
+              defaultMessage='My current static-metabolism-rate: {rate}'
+              values={{ rate: `${printedSMR}` }}
+            />
+          </Text>
+
+          <select onChange={e => handleMetaRateDropdown(e)} className="dropdown--metaRate">
+            {
+              Add.map((calories, key) => <option value={key}>{calories}</option>)
+            }
+          </select>
+        </div>
+        <div className="dashboard__button--new-card">
+          <Button
+            className="primary-button--full-width"
+            onClick={handleAddNewCard}
+          >
+            <FormattedMessage
+              id="dashboard.button.new_card"
+              defaultMessage="Add New Card"
+            />
+          </Button>
+        </div>
       </div>
 
 
@@ -134,20 +152,6 @@ const DashboardPage = () => {
       <Spacer spacing={32} />
 
       <Container borderColor={gray_2}>
-        <H2>
-          <FormattedMessage
-            id="dashboard.inner.weekly.header"
-            defaultMessage="Last 7 days"
-          />
-        </H2>
-        <Text color={secondary}>
-          <FormattedMessage
-            id="dashboard.metabolism.rate"
-            defaultMessage='My static metabolism rate: {rate}'
-            values={{ rate: "1900" }}
-          />
-        </Text>
-        <Spacer spacing={32} />
 
         <Flexbox>
           {cardDeck && cardDeck.map((card) => (
@@ -170,7 +174,7 @@ const DashboardPage = () => {
 
       </Container>
 
-    </div>)
+    </>)
 }
 
 export default DashboardPage

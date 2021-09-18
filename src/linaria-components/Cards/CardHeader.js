@@ -39,6 +39,7 @@ export const CardHeader = ({ children, cardId, ...props }) => {
 
   return <BaseCardHeader {...props} >
     {children}
+    {/* <AbsoluteSpan handleCardDelete={handleCardDelete}>{IconDelete}</AbsoluteSpan> */}
   </BaseCardHeader>
 }
 

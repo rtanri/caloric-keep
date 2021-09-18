@@ -4,6 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import { FormattedMessage } from 'react-intl'
 import { AuthContext } from "../services/AuthProvider";
 import { TranslationContext } from '../services/TranslationProvider'
+import { Text, H1, H2, gray_1, gray_2 } from '../linaria-components'
 
 function Navbar() {
   const auth = useContext(AuthContext);
@@ -16,18 +17,46 @@ function Navbar() {
 
   return (
     <header className="site0header">
-				<Menu mode="horizontal" style={{ margin: '0 auto', maxWidth:'1660px', width:'100%'}}>
-        <Menu.Item key="dashboard" >
-          <Link to="/dashboard">
+				<Menu mode="horizontal" style={{ margin: '0 auto', maxWidth:'1660px', width:'100%', borderColor:"#5D534A", minHeight:"50px", fontSize:"1.1rem", padding:'10px 0'}}>
+        <Menu.Item>
+          <Text
+            textAlign="center"
+            size="30px"
+            fontFamily="Libre Baskerville"
+            margin="5px 0"
+          >
             <FormattedMessage
-                  id="menu_bar.nav.dashboard"
-                  defaultMessage="Dashboard"
+              id="dashboard.header"
+              defaultMessage="Caloric Keep"
             />
-          </Link>
+          </Text>
         </Menu.Item>
+
+        <Menu.Item key="translation" disabled className="menu-select--styling">
+            <select value={context.locale} onChange={context.handleLangChange}>
+              <option value="en">English</option>
+              <option value="id">Indonesia</option>
+              <option value="ch">Chinese</option>
+              <option value="jp">Japanese</option>
+            </select>
+        </Menu.Item>
+
+        <Menu.Item disable style={{ marginLeft: 'auto' }}>
+        </Menu.Item>
+
 
       
         {auth.token ? (
+        <>       
+          <Menu.Item key="dashboard">
+            <Link to="/dashboard">
+              <FormattedMessage
+                    id="menu_bar.nav.dashboard"
+                    defaultMessage="Dashboard"
+              />
+            </Link>
+          </Menu.Item>
+          
           <Menu.Item key="logout">
             <Button type="danger" onClick={auth.logout}>
             <FormattedMessage
@@ -35,7 +64,8 @@ function Navbar() {
                   defaultMessage="Logout"
             />
             </Button>
-          </Menu.Item>
+            </Menu.Item>
+        </> 
         ) : (
           <>
           <Menu.Item key="register">
@@ -58,15 +88,6 @@ function Navbar() {
           </>
         )}
 
-				<Menu.Item key="translation" disabled className="menu-select--styling">
-            <select value={context.locale} onChange={context.handleLangChange}>
-              <option value="en">English</option>
-              <option value="id">Indonesia</option>
-              <option value="ch">Chinese</option>
-              <option value="jp">Japanese</option>
-            </select>
-        </Menu.Item>
-      
       </Menu>
     </header>
   );

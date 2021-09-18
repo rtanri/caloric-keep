@@ -4,11 +4,23 @@
       "menu_bar.nav.login": "ログイン",
       "menu_bar.nav.logout": "ログアウト",
       "dashboard.header": "カロリーキープ",
-      "dashboard.inner.weekly.header": "過去7日間",
       "login_page.header":"ログインアカウント",
       "Register_page.header":"新規ユーザーの登録",
       "modal.form.header": "食事を記録する",
       "modal.input.meal_name":"食事名",
       "modal.input.calory_intake":"カロリー摂取量（kcal）",
-      "modal.button.submit":"保存する"
+      "modal.button.submit":"保存する",
+      "modal.new_card.header":"カード名を入力してください",
+      "modal.input.card_title":"カード名",
+      "dashboard.metabolism.rate": [
+        {
+          "type": 0,
+          "value": "私の静的代謝率： "
+        },
+        {
+          "type": 1,
+          "value": "rate"
+        }
+      ],
+      "dashboard.button.new_card":"新しいカードを追加する"
 }

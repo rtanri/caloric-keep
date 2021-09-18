@@ -16,11 +16,6 @@
   border-left: 3px dotted #E0E0E0;
 }
 
-.dashboard__button--new-card{
-  width: 300px;
-  margin: 0 auto;
-}
-
 // modal
 
 .modal-background {
@@ -141,7 +136,8 @@
 }
 // modal stop
 
-// Card
+
+// ==== Card
 
 .absolute-span{
   position: absolute;
@@ -156,4 +152,48 @@
   }
 }
 
-// card stop
+// ==== card stop
+
+// === dashboard setting (top)
+
+.dashboard-setting--wrapper{
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  padding: 0 2%;
+  min-height: 10px;
+}
+
+.dashboard__button--new-card{
+  width: 300px;
+  margin: 0 auto;
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+}
+
+.dashboard__metabolism-rate--wrapper{
+  display: inline-block;
+  min-width: 400px;
+}
+
+.dropdown--metaRate{
+  display: inline;
+  margin: auto 20px;
+  width: 80px;
+  font-size: 18px;
+  padding: 5px;
+  background-color: #5D534A;
+  border-radius: 10px;
+  color: white;
+
+  select:active{
+    border: none;
+  }
+  select:focus{
+    border: none;
+  }
+  select:hover{
+    border: none;
+  }
+}

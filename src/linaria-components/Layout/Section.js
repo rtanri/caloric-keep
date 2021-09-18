@@ -39,7 +39,7 @@ Section.defaultProps = {
   position: 'relative',
   minHeight: '1px',
   margin: '0 auto',
-  padding: '0 2% 40px 2%',
+  padding: '40px 2% 40px 2%',
   maxWidth: '1660px',
   width: '100%',
 }

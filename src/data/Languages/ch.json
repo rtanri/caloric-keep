@@ -4,11 +4,23 @@
       "menu_bar.nav.login": "登录",
       "menu_bar.nav.logout": "登出",
       "dashboard.header": "热量笔记",
-      "dashboard.inner.weekly.header": "过去 7 天",
       "login_page.header":"登录帐号",
       "Register_page.header":"注册新用户",
       "modal.form.header": "记录你的用餐",
       "modal.input.meal_name":"餐名",
       "modal.input.calory_intake":"卡路里摄入量（千卡）",
-      "modal.button.submit":"节省"
+      "modal.button.submit":"节省",
+      "modal.new_card.header":"輸入卡片標題",
+      "modal.input.card_title":"標題",
+      "dashboard.metabolism.rate": [
+        {
+          "type": 0,
+          "value": "我的靜態代謝率: "
+        },
+        {
+          "type": 1,
+          "value": "rate"
+        }
+      ],
+      "dashboard.button.new_card":"添加新卡"
 }

@@ -4,7 +4,14 @@
       "menu_bar.nav.login": "Login",
       "menu_bar.nav.logout": "Logout",
       "dashboard.header": "Caloric Keep",
-      "dashboard.inner.weekly.header": "Last 7 days",
+      "login_page.header":"Login Account",
+      "Register_page.header":"Register New User",
+      "modal.form.header": "Record your meal",
+      "modal.input.meal_name":"Meal Name",
+      "modal.input.calory_intake":"Calory Intake (in kcal)",
+      "modal.button.submit":"Save",
+      "modal.new_card.header":"Enter Card Title",
+      "modal.input.card_title":"Title",
       "dashboard.metabolism.rate": [
         {
           "type": 0,
@@ -15,10 +22,5 @@
           "value": "rate"
         }
       ],
-      "login_page.header":"Login Account",
-      "Register_page.header":"Register New User",
-      "modal.form.header": "Record your meal",
-      "modal.input.meal_name":"Meal Name",
-      "modal.input.calory_intake":"Calory Intake (in kcal)",
-      "modal.button.submit":"Save"
+      "dashboard.button.new_card":"Add New Card"
 }

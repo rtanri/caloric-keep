@@ -4,11 +4,23 @@
       "menu_bar.nav.login": "Masuk",
       "menu_bar.nav.logout": "Keluar",
       "dashboard.header": "Tempat Hitung Kalori",
-      "dashboard.inner.weekly.header": "Dalam 7 hari terakhir",
       "login_page.header":"Form Masuk Pelanggan",
       "Register_page.header":"Registrasi Pelanggan Baru",
       "modal.form.header": "Catat Makanan",
       "modal.input.meal_name":"Nama Makanan",
       "modal.input.calory_intake":"Kalori (dalam kcal)",
-      "modal.button.submit":"Simpan"
+      "modal.button.submit":"Simpan",
+      "modal.new_card.header":"Daftarkan Judul Kartu",
+      "modal.input.card_title":"Judul",
+      "dashboard.metabolism.rate": [
+        {
+          "type": 0,
+          "value": "Static Metabolism Rate Saya: "
+        },
+        {
+          "type": 1,
+          "value": "rate"
+        }
+      ],
+      "dashboard.button.new_card":"Buat Kartu Baru"
 }

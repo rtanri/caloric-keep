@@ -98,46 +98,6 @@ const ModalNewCard = ({ closeModal, currentUserId }) => {
                   />
                 </Form.Item>
               </div>
-              <div className="form-item--wrapper">
-                <Text>
-                  <FormattedMessage
-                    id="modal.input.meal_name"
-                    defaultMessage="Meal Name"
-                  />
-                </Text>
-                {/* 1st item */}
-                <Form.Item
-                  name="meal_name"
-                  rules={[{ required: true, message: "Enter food name" }]}
-                >
-                  <Input
-                    prefix={<EditOutlined className="site-form-item-icon" />}
-                    className="meal-name-input"
-                  />
-                </Form.Item>
-              </div>
-
-              {/* 2nd item */}
-              <div className="form-item--wrapper">
-                <Text>
-                  <FormattedMessage
-                    id="modal.input.calory_intake"
-                    defaultMessage="Calory Intake (in kcal)"
-                  />
-                </Text>
-                <Form.Item
-                  name="calories"
-                  rules={[
-                    { required: true, message: "Enter calory intake" },
-                  ]}
-                >
-                  <Input
-                    prefix={<PlusOutlined className="site-form-item-icon" />}
-                    className="meal-name-input"
-                  />
-                </Form.Item>
-              </div>
-
             </div>
 
             {/* submit button */}
