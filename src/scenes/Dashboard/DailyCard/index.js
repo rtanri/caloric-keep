@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Text, Card, CardHeader, CardBody } from '../../../linaria-components'
-import ModalInput from '../Modal'
-
-
+import ModalInput from '../MealModal'
 
 function DailyCard({ id, color, title, user, meal1, meal2, meal3, meal4, meal5, total, remain, onClick }) {
   const [openModal, setOpenModal] = useState(false)

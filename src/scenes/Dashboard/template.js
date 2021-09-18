@@ -6,13 +6,15 @@ import DailyCard from './DailyCard'
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../../services/firebase/firebase';
 import { AuthContext } from "../../services/AuthProvider.jsx"
-import { Skeleton } from "antd"
+import { Skeleton, Button } from "antd"
+import ModalNewCard from "./NewCardModal"
 
 
 const DashboardPage = () => {
   const auth = useContext(AuthContext)
   const [cardDeck, setCardDeck] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [openNewCardModal, setOpenNewCardModal] = useState(false)
   const [userID, setUserID] = useState("")
 
   const COLOR_RED = { red }
@@ -96,10 +98,13 @@ const DashboardPage = () => {
     setIsLoading(false)
   }
 
+  const handleAddNewCard = () => {
+    setOpenNewCardModal(true)
+  }
+
   if (isLoading) {
     return (<Skeleton active={true} />)
   }
-
 
   return (
     <div>
@@ -109,7 +114,24 @@ const DashboardPage = () => {
           defaultMessage="Caloric Keep"
         />
       </H1>
+      <div className="dashboard__button--new-card">
+        <Button
+          className="primary-button--full-width"
+          onClick={handleAddNewCard}
+        >
+          <FormattedMessage
+            id="dashboard.button.new_card"
+            defaultMessage="Add card"
+          />
+        </Button>
+      </div>
 
+
+      {openNewCardModal &&
+        <ModalNewCard closeModal={() => setOpenNewCardModal(false)} currentUserId={userID} />
+      }
+
+      <Spacer spacing={32} />
 
       <Container borderColor={gray_2}>
         <H2>
