@@ -46,11 +46,10 @@ export default function AuthProvider({ children }) {
       const loginResp = await signInWithEmailAndPassword(auth, email, password);
       const userToken = await loginResp.user.getIdToken();
 
-      console.log("userToken");
-      console.log(userToken);
-
-      setToken(userToken);
+      // setAuthUserID(userUID);
       setAuthUserID(loginResp.user.uid);
+      setToken(userToken);
+      
       // setAuthUser(loginResp.user.toJSON());
       setCookie(AuthTokenCookieName, userToken, { path: "/", maxAge: 10800 });
       setCookie(AuthUserIDCookieName, loginResp.user.uid);

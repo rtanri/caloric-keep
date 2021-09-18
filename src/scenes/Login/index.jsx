@@ -6,29 +6,30 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { AuthContext } from '../../services/AuthProvider';
 
 function LoginPage(props) {
-			const auth = useContext(AuthContext);
+  const auth = useContext(AuthContext);
 
-			const [isLoggingIn, setIsLoggingIn] = useState(false);
-			const [email, setEmail] = useState("")
-			const [password, setPassword] = useState("")
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
 
-			const handleSubmit = async () => {
-						setIsLoggingIn(true);
-						const loginSuccess = await auth.login(email, password);
-		if (loginSuccess) {
-			notification.success({
-				message: "Login Success",
-				placement: "topRight",
-			});
-		} else {
-			notification.error({
-				message: "Login Failed",
-				placement: "topRight",
-			});
-		}
-		setIsLoggingIn(false);
-			}
+  const handleSubmit = async () => {
+    setIsLoggingIn(true);
+    const loginSuccess = await auth.login(email, password);
+    
+    if (loginSuccess) {
+      notification.success({
+        message: "Login Success",
+        placement: "topRight",
+      });
+    } else {
+      notification.error({
+        message: "Login Failed",
+        placement: "topRight",
+      });
+    }
+    setIsLoggingIn(false);
+      }
 
 			return (
 			<Container>

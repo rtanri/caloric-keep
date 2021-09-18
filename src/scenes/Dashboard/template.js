@@ -1,50 +1,53 @@
-import React, { useState, useEffect } from 'react'
-// import * as R from 'ramda'
+import React, { useState, useEffect, useContext } from 'react'
 import { Text, H1, H2, Container, Flexbox, Spacer } from '../../linaria-components'
 import { gray_2, red, green, secondary } from '../../linaria-components'
 import { FormattedMessage } from 'react-intl'
 import DailyCard from './DailyCard'
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../../services/firebase/firebase';
-
+import { AuthContext } from "../../services/AuthProvider.jsx"
+import { Skeleton } from "antd"
 
 
 const DashboardPage = () => {
-  // const plus = R.add(2, 3);
+  const auth = useContext(AuthContext)
   const [cardDeck, setCardDeck] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [userID, setUserID] = useState("")
+
   const COLOR_RED = { red }
   const COLOR_GREEN = { green }
   const metabolism_rate = 1900;
 
-
   useEffect(() => {
-    getAllCard()
+    setIsLoading(true)
+    setTimeout(() => {
+      getAllCard()
+    }, 2500)
   }, [])
 
 
-
-  // const q = query(collection(db, "cities"), where("capital", "==", true));
-
-  // const querySnapshot = await getDocs(q);
-
-  // querySnapshot.forEach((doc) => {
-  //   // doc.data() is never undefined for query doc snapshots
-  //   console.log(doc.id, " => ", doc.data());
-  // });
-
-
   const getAllCard = async () => {
-    let cardCollection = query(collection(db, "cards"), where("user_id", "==", "CuGTCvX8Y6B7gIKvcfAy"));
+    try {
+      const getUserId = await auth.authUserID
+      setUserID(getUserId)
+      console.log(getUserId)
+    } catch (err) {
+      console.log(err)
+    }
+
+    let cardCollection = query(collection(db, "cards"), where("user_id", "==", auth.authUserID));
 
     const cardSnapshot = await getDocs(cardCollection)
     let docArray = []
+
     cardSnapshot.forEach((doc) => {
-      // cards.push(doc.data())
+      // console.log(doc.id)
       let currentCard = doc.data()
+      currentCard.id = doc.id
       let total = 0
       let remain = 0
       let card_color = COLOR_GREEN.green
-
 
       if (currentCard.meals) {
         let mealArray = currentCard.meals
@@ -90,55 +93,62 @@ const DashboardPage = () => {
       })
     })
     setCardDeck(docArray)
+    setIsLoading(false)
   }
 
-  return <div>
-    <H1 textAlign="center">
-      <FormattedMessage
-        id="dashboard.header"
-        defaultMessage="Caloric Keep"
-      />
-    </H1>
+  if (isLoading) {
+    return (<Skeleton active={true} />)
+  }
 
 
-    <Container borderColor={gray_2}>
-      <H2>
+  return (
+    <div>
+      <H1 textAlign="center">
         <FormattedMessage
-          id="dashboard.inner.weekly.header"
-          defaultMessage="Last 7 days"
+          id="dashboard.header"
+          defaultMessage="Caloric Keep"
         />
-      </H2>
-      <Text color={secondary}>
-        <FormattedMessage
-          id="dashboard.metabolism.rate"
-          defaultMessage='My static metabolism rate: {rate}'
-          values={{ rate: "1900" }}
-        />
-      </Text>
-      <Spacer spacing={32} />
+      </H1>
 
-      <Flexbox>
-        {cardDeck && cardDeck.map((card) => (
-          <DailyCard
-            color={card.color}
-            title={card.title}
-            key={card.key}
-            id={card.key}
-            user={card.user}
-            meal1={card.meal1}
-            meal2={card.meal2}
-            meal3={card.meal3}
-            meal4={card.meal4}
-            meal5={card.meal5}
-            total={card.total}
-            remain={card.remain}
+
+      <Container borderColor={gray_2}>
+        <H2>
+          <FormattedMessage
+            id="dashboard.inner.weekly.header"
+            defaultMessage="Last 7 days"
           />
-        ))}
-      </Flexbox>
+        </H2>
+        <Text color={secondary}>
+          <FormattedMessage
+            id="dashboard.metabolism.rate"
+            defaultMessage='My static metabolism rate: {rate}'
+            values={{ rate: "1900" }}
+          />
+        </Text>
+        <Spacer spacing={32} />
 
-    </Container>
+        <Flexbox>
+          {cardDeck && cardDeck.map((card) => (
+            <DailyCard
+              color={card.color}
+              title={card.title}
+              key={card.key}
+              id={card.id}
+              user={card.user}
+              meal1={card.meal1}
+              meal2={card.meal2}
+              meal3={card.meal3}
+              meal4={card.meal4}
+              meal5={card.meal5}
+              total={card.total}
+              remain={card.remain}
+            />
+          ))}
+        </Flexbox>
 
-  </div>
+      </Container>
+
+    </div>)
 }
 
 export default DashboardPage

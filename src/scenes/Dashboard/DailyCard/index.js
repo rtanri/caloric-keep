@@ -6,22 +6,20 @@ import ModalInput from '../Modal'
 
 function DailyCard({ id, color, title, user, meal1, meal2, meal3, meal4, meal5, total, remain, onClick }) {
   const [openModal, setOpenModal] = useState(false)
+  const [uniqueUserId, setUniqueUserId] = useState("")
 
   useEffect(() => {
     renderMealRecord()
-    return () => {
-    }
+    setUniqueUserId(user)
   }, [])
 
   const handleOnClick = () => {
     setOpenModal(true)
   }
 
-  const testCardUserID = "7GvhOprgJf3qSHCfCdNw"
-
   return (
     <>
-      <Card color={color} className="card" onClick={handleOnClick} id={testCardUserID}>
+      <Card color={color} className="card" onClick={handleOnClick}>
         <CardHeader>
           {title}
         </CardHeader>
@@ -63,7 +61,7 @@ function DailyCard({ id, color, title, user, meal1, meal2, meal3, meal4, meal5, 
           </div>
         </CardBody>
       </Card>
-      {openModal && <ModalInput closeModal={() => setOpenModal(false)} />}
+      {openModal && <ModalInput closeModal={() => setOpenModal(false)} cardId={id} />}
     </>
   )
 }
