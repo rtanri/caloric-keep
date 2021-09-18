@@ -21,7 +21,6 @@ const H2 = styled(Text)`
   color: ${secondary};
   line-height: 4rem;
   text-align: 'left';
-  margin: 20px 0;
   display: block;
 `
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { IntlProvider } from 'react-intl'
+import * as R from 'ramda'
 import English from '../data/Languages/en.json'
 import Indonesia from '../data/Languages/id.json'
 import China from '../data/Languages/ch.json'
@@ -10,6 +11,14 @@ export const TranslationContext = React.createContext()
 const local = navigator.language;
 
 let lang;
+
+// R.cond([
+//   [R.equals('id'), R.always(lang = Indonesia)],
+//   [R.equals('ch'), R.always(lang = China)],
+//   [R.equals('jp'), R.always(lang = Japan)],
+//   [R.equals('en'), R.always(lang = English)],
+//   [ R.T, R.always(lang = English) ]
+// ])
 
 
 switch (local) {
@@ -29,20 +38,25 @@ switch (local) {
     lang = English;
 }
 
-// if (local === 'id') {
-//       lang = Indonesia
-// } elseif (local ) {
-//       lang = English
-// }
-
 const TranslationProvider = (props) => {
       const [locale, setLocale] = useState(local)
       const [messages, setMessages] = useState(lang);
 
       const handleLangChange = (e) => {
-            const newLocale = e.target.value;
-            setLocale(newLocale);
+        const newLocale = e.target.value;
         
+        setLocale(newLocale);
+        
+        // R.cond([
+        //   // [R.equals('id'), R.always(console.log("ramda id"))],
+        //   [R.equals('id'), R.always(setMessages(Indonesia))],
+        //   // [R.equals('ch'), R.always(console.log("ramnda ch"))],
+        //   [R.equals('ch'), R.always(setMessages(China))],
+        //   [R.equals('jp'), R.always(setMessages(Japan))],
+        //   [R.equals('en'), R.always(setMessages(English))],
+        //   [ R.T, R.always(setMessages(English)) ]
+        // ])
+      
             switch (newLocale) {
               case 'id':
                 setMessages(Indonesia)
@@ -59,12 +73,12 @@ const TranslationProvider = (props) => {
               default:
                 setMessages(English);
             }
-            // if (newLocale === 'en') {
-            //       setMessages(English)
-            // }
-            // if (newLocale === 'id') {
-            //       setMessages(Indonesia)
-            // }
+            if (newLocale === 'en') {
+                  setMessages(English)
+            }
+            if (newLocale === 'id') {
+                  setMessages(Indonesia)
+            }
       }
       
       return (

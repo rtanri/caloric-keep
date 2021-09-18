@@ -5,7 +5,7 @@ import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { collection, addDoc } from "firebase/firestore";
 import { FormattedMessage } from 'react-intl'
 import { firebaseApp, db } from '../../../services/firebase/firebase';
-import { Text, H2 } from '../../../linaria-components';
+import { Text, H2, Spacer } from '../../../linaria-components';
 
 
 const ModalInput = ({ closeModal }) => {
@@ -118,6 +118,7 @@ const ModalInput = ({ closeModal }) => {
               defaultMessage="Record your meal"
             />
           </H2>
+          <Spacer spacing={32} />
         </div>
         <div className="modal-body">
           {modalText}

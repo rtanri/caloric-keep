@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react'
 // import * as R from 'ramda'
-import { Text, H1, H2, Container, Flexbox } from '../../linaria-components'
-import { gray_2, gray_1, red, green } from '../../linaria-components'
+import { Text, H1, H2, Container, Flexbox, Spacer } from '../../linaria-components'
+import { gray_2, red, green, secondary } from '../../linaria-components'
 import { FormattedMessage } from 'react-intl'
 import DailyCard from './DailyCard'
-import ModalInput from './Modal'
 import { collection, getDocs, where } from "firebase/firestore";
 import { db } from '../../services/firebase/firebase';
 
 
-const metabolism_rate = 1200;
 
 const DashboardPage = () => {
   // const plus = R.add(2, 3);
   const [cardDeck, setCardDeck] = useState([])
   const COLOR_RED = { red }
   const COLOR_GREEN = { green }
+  const metabolism_rate = 1900;
 
 
   useEffect(() => {
@@ -98,6 +97,7 @@ const DashboardPage = () => {
       />
     </H1>
 
+
     <Container borderColor={gray_2}>
       <H2>
         <FormattedMessage
@@ -105,6 +105,15 @@ const DashboardPage = () => {
           defaultMessage="Last 7 days"
         />
       </H2>
+      <Text color={secondary}>
+        <FormattedMessage
+          id="dashboard.metabolism.rate"
+          defaultMessage='My static metabolism rate: {rate}'
+          values={{ rate: "1900" }}
+        />
+      </Text>
+      <Spacer spacing={32} />
+
       <Flexbox>
         {cardDeck && cardDeck.map((card) => (
           <DailyCard

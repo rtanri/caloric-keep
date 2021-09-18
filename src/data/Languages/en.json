@@ -5,6 +5,16 @@
       "menu_bar.nav.logout": "Logout",
       "dashboard.header": "Caloric Keep",
       "dashboard.inner.weekly.header": "Last 7 days",
+      "dashboard.metabolism.rate": [
+        {
+          "type": 0,
+          "value": "My static metabolism rate: "
+        },
+        {
+          "type": 1,
+          "value": "rate"
+        }
+      ],
       "login_page.header":"Login Account",
       "Register_page.header":"Register New User",
       "modal.form.header": "Record your meal",
