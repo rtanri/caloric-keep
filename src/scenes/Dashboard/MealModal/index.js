@@ -20,6 +20,9 @@ const ModalInput = ({ closeModal, cardId }) => {
     setIsLoading(false);
   };
 
+  const refreshPage = () => {
+    window.location.reload()
+  }
 
   const onFinish = async (values) => {
     setIsLoading(true);
@@ -49,6 +52,7 @@ const ModalInput = ({ closeModal, cardId }) => {
       console.log("Error adding document: ", e);
     }
     closeModal()
+    refreshPage()
   };
 
 

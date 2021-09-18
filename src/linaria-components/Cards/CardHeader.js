@@ -2,6 +2,8 @@ import React from 'react'
 import { styled } from 'linaria/react'
 import { transparent, black, secondary, grey_1, grey_2 } from '../Colors'
 import { IconDelete } from '../Icons'
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../../services/firebase/firebase"
 
 const BaseCardHeader = styled.div`
       display: inline-flex;
@@ -27,10 +29,16 @@ const AbsoluteSpan = styled.span`
       }
 `
 
-export const CardHeader = ({ children, ...props }) => {
+export const CardHeader = ({ children, cardId, ...props }) => {
+
+  // const handleCardDelete = async () => {
+  //   console.log(cardId)
+  //   console.log(db)
+  //   await deleteDoc(doc(db, "cards", cardId));
+  // }
+
   return <BaseCardHeader {...props} >
     {children}
-    <AbsoluteSpan>{IconDelete}</AbsoluteSpan>
   </BaseCardHeader>
 }
 

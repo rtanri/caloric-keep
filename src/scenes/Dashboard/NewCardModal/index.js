@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button, Form, Input, notification } from 'antd';
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { doc, updateDoc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { FormattedMessage } from 'react-intl'
 import { db } from '../../../services/firebase/firebase';
 import { Text, H2, Spacer } from '../../../linaria-components';
@@ -22,8 +22,7 @@ const ModalNewCard = ({ closeModal, currentUserId }) => {
 
   const onFinish = async (values) => {
     setIsLoading(true);
-    console.log("==checking new card==")
-    console.log(values)
+    // console.log("==checking new card==")
     let newObj = {
       title: values.title,
       user_id: uniqueUserId,
@@ -32,16 +31,22 @@ const ModalNewCard = ({ closeModal, currentUserId }) => {
         calories: values.calories,
       })
     }
+    // console.log(newObj)
 
     try {
-      await setDoc(doc(db, "cards"), newObj)
-      notification.open({
-        message: "New card is created",
-        placement: "topRight",
-      });
+      console.log(1)
+      const collectionRef = db
+      console.log(collectionRef)
+      // await setDoc(doc(db, "cards"), newObj)
+      // notification.open({
+      //   message: "New card is created",
+      //   placement: "topRight",
+      // });
+      console.log(2)
       setIsLoading(false);
     }
     catch (e) {
+      console.log(3)
       setIsLoading(false);
       notification.warning({
         message: "Card created failed",
@@ -49,6 +54,7 @@ const ModalNewCard = ({ closeModal, currentUserId }) => {
       });
       console.log("Error adding document: ", e);
     }
+    console.log(4)
     closeModal()
   };
 

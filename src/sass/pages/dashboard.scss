@@ -141,3 +141,19 @@
 }
 // modal stop
 
+// Card
+
+.absolute-span{
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #333;
+  font-size: 22px;
+
+  &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+  }
+}
+
+// card stop

@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { Text, Card, CardHeader, CardBody } from '../../../linaria-components'
+import { Text, Card, CardHeader, CardBody, IconDelete } from '../../../linaria-components'
 import ModalInput from '../MealModal'
+import { db } from "../../../services/firebase/firebase"
+import { doc, deleteDoc } from "firebase/firestore";
+import { useHistory } from "react-router-dom";
+
 
 function DailyCard({ id, color, title, user, meal1, meal2, meal3, meal4, meal5, total, remain, onClick }) {
   const [openModal, setOpenModal] = useState(false)
   const [uniqueUserId, setUniqueUserId] = useState("")
+  const history = useHistory()
 
   useEffect(() => {
     renderMealRecord()
@@ -15,14 +20,30 @@ function DailyCard({ id, color, title, user, meal1, meal2, meal3, meal4, meal5, 
     setOpenModal(true)
   }
 
+  const refreshPage = () => {
+    window.location.reload()
+  }
+
+  const handleCardDelete = async () => {
+    console.log(id)
+    console.log(db)
+    try {
+      await deleteDoc(doc(db, "cards", id));
+    } catch (err) {
+      console.log(err)
+    }
+    refreshPage()
+  }
+
   return (
     <>
-      <Card color={color} className="card" onClick={handleOnClick}>
-        <CardHeader>
+      <Card color={color} className="card">
+        <CardHeader cardId={id}>
           {title}
+          <span onClick={handleCardDelete} className="absolute-span">{IconDelete}</span>
         </CardHeader>
 
-        <CardBody>
+        <CardBody onClick={handleOnClick}>
           <div className="card--meal-status-wrapper">
             <Text weight={700} id='total'
               className="daily-card__total-calories">
