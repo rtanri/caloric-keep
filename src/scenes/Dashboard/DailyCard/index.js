@@ -1,43 +1,53 @@
 import React, { useState, useEffect } from 'react'
-import { Text, Card, CardHeader, CardBody, IconDelete } from '../../../linaria-components'
+import { Text, Card, CardHeader, CardBody, IconDelete, red, green } from '../../../linaria-components'
 import ModalInput from '../MealModal'
-import { db } from "../../../services/firebase/firebase"
-import { doc, deleteDoc } from "firebase/firestore";
-import { useHistory } from "react-router-dom";
+import { deleteOneCard } from "../../../data/api/dashboard_api"
 
 
-function DailyCard({ id, color, title, user, meal1, meal2, meal3, meal4, meal5, total, remain, onClick }) {
+const renderMealRecord = () => {
+  const mealRecord = document.querySelectorAll(".meal-record")
+  for (let i = 0; i < mealRecord.length; i++) {
+    // console.log(mealRecord[i].textContent)
+    if (mealRecord[i].textContent === "") {
+      mealRecord[i].parentElement.classList.add("hidden")
+    }
+    if (mealRecord[i].textContent !== "") {
+      mealRecord[i].parentElement.classList.remove("hidden")
+    }
+  }
+}
+
+function DailyCard({ id, title, user, meal1, meal2, meal3, meal4, meal5, meal6, total, metabolism_rate }) {
   const [openModal, setOpenModal] = useState(false)
   const [uniqueUserId, setUniqueUserId] = useState("")
-  const history = useHistory()
+  const [remain, setRemain] = useState(0)
+  const [cardColor, setCardColor] = useState("")
+  const COLOR_GREEN = { green }.green
+  const COLOR_RED = { red }.red
 
   useEffect(() => {
     renderMealRecord()
+    renderRemainingValue()
     setUniqueUserId(user)
-  }, [])
+  }, [metabolism_rate])
 
   const handleOnClick = () => {
     setOpenModal(true)
   }
 
-  const refreshPage = () => {
-    window.location.reload()
+  const renderRemainingValue = () => {
+    let remainingValue = metabolism_rate - total
+    setRemain(remainingValue)
+    remainingValue >= 0 ? setCardColor(COLOR_GREEN) : setCardColor(COLOR_RED)
   }
 
-  const handleCardDelete = async () => {
-    console.log(id)
-    console.log(db)
-    try {
-      await deleteDoc(doc(db, "cards", id));
-    } catch (err) {
-      console.log(err)
-    }
-    refreshPage()
+  const handleCardDelete = () => {
+    deleteOneCard(id)
   }
 
   return (
     <>
-      <Card color={color} className="card">
+      <Card color={cardColor} className="card">
         <CardHeader cardId={id}>
           {title}
           <span onClick={handleCardDelete} className="absolute-span">{IconDelete}</span>
@@ -77,27 +87,22 @@ function DailyCard({ id, color, title, user, meal1, meal2, meal3, meal4, meal5, 
               #4 Meal: &nbsp;
               <span className="meal-record" >{meal4}</span>
             </span>
+            <span id='meal-5'
+              className="daily-card__span--line-break">
+              #4 Meal: &nbsp;
+              <span className="meal-record" >{meal5}</span>
+            </span>
+            <span id='meal-6'
+              className="daily-card__span--line-break">
+              #4 Meal: &nbsp;
+              <span className="meal-record" >{meal6}</span>
+            </span>
           </div>
         </CardBody>
       </Card>
       {openModal && <ModalInput closeModal={() => setOpenModal(false)} cardId={id} />}
     </>
   )
-}
-
-
-const renderMealRecord = () => {
-  const mealRecord = document.querySelectorAll(".meal-record")
-  for (let i = 0; i < mealRecord.length; i++) {
-    // console.log(mealRecord[i].textContent)
-    if (mealRecord[i].textContent === "") {
-      mealRecord[i].parentElement.classList.add("hidden")
-    }
-    if (mealRecord[i].textContent !== "") {
-      mealRecord[i].parentElement.classList.remove("hidden")
-    }
-  }
-
 }
 
 

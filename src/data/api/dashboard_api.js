@@ -1,66 +1,65 @@
-// call card collection only (title and user_id)
-import { db } from '../../services/firebase/firebase";
+import { db } from '../../services/firebase/firebase'
+import { collection, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
 
-const getAllCard = async () => {
-  const result = await getDocs(collection(db, "cards"), where("user_id", "==", "CuGTCvX8Y6B7gIKvcfAy"))
-    .then(docResp => {
-      let docArray = [];
-      docResp.forEach((card) => {
-        let total = 0
-        let remain = 0
-        let card_color = COLOR_GREEN.green
 
-        if (card.data().meals) {
-          let mealArray = card.data().meals
-          let mealz = []
+export const getAllCard = async (userId, printedSMR, setCardDeck, setIsLoading) => {
+  let cardCollection = query(collection(db, "cards"), where("user_id", "==", userId));
 
-          if (mealArray[0]) {
+  const cardSnapshot = await getDocs(cardCollection)
+  let docArray = []
 
-            for (const key of mealArray) {
-              mealz.push(`${key.name} (${key.calories})`)
-              total += parseInt(key.calories);
-            }
-            if (total >= metabolism_rate) {
-              card_color = COLOR_RED.red
-            }
-            remain = metabolism_rate - total
-            console.log(remain)
-          }
+  cardSnapshot.forEach((doc) => {
 
-          docArray.push({
-            key: card.id,
-            id: card.id,
-            title: card.data().title,
-            user: card.data().user_id,
-            color: card_color,
-            total: total,
-            remain: remain,
-            meal1: mealz[0],
-            meal2: mealz[1],
-            meal3: mealz[2],
-            meal4: mealz[3],
-            meal5: mealz[4],
-          })
-          return;
+    let currentCard = doc.data()
+    currentCard.id = doc.id
+    let total = 0
+
+    if (currentCard.meals) {
+      let mealArray = currentCard.meals
+      let foodData = []
+
+      if (mealArray[0]) {
+
+        for (const key of mealArray) {
+          foodData.push(`${key.name} (${key.calories})`)
+          total += parseInt(key.calories);
         }
-
-        docArray.push({
-          key: card.id,
-          id: card.id,
-          title: card.data().title,
-          user: card.data().user_id,
-          color: card_color,
-          total: total,
-          remain: remain,
-        })
       }
-      )
-      console.log(docArray)
-      return docArray
+
+      docArray.push({
+        key: currentCard.id,
+        id: currentCard.id,
+        title: currentCard.title,
+        user: currentCard.user_id,
+        total: total,
+        meal1: foodData[0],
+        meal2: foodData[1],
+        meal3: foodData[2],
+        meal4: foodData[3],
+        meal5: foodData[4],
+      })
+      return;
+    }
+
+    docArray.push({
+      key: currentCard.id,
+      id: currentCard.id,
+      title: currentCard.title,
+      user: currentCard.user_id,
+      total: total,
     })
-    .catch(err => {
-      console.log(err)
-    })
-  console.log(typeof metabolism_rate)
-  setCardDeck(result)
+  })
+  setCardDeck(docArray)
+  setIsLoading(false)
+}
+
+export const deleteOneCard = async (cardId) => {
+  console.log(cardId)
+  console.log(db)
+  try {
+    await deleteDoc(doc(db, "cards", cardId));
+  } catch (err) {
+    console.log(err)
+  }
+  window.location.reload()
 }

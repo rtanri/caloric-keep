@@ -7,7 +7,6 @@ import {
   Redirect,
 } from "react-router-dom";
 import { Section } from './linaria-components';
-import { firebaseApp } from './services/firebase/firebase';
 
 import TranslationProvider from './services/TranslationProvider'
 import AuthProvider from './services/AuthProvider';

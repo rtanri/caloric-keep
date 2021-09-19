@@ -4,7 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import { FormattedMessage } from 'react-intl'
 import { AuthContext } from "../services/AuthProvider";
 import { TranslationContext } from '../services/TranslationProvider'
-import { Text, H1, H2, gray_1, gray_2 } from '../linaria-components'
+import { Text } from '../linaria-components'
 
 function Navbar() {
   const auth = useContext(AuthContext);
@@ -18,7 +18,7 @@ function Navbar() {
   return (
     <header className="site0header">
 				<Menu mode="horizontal" style={{ margin: '0 auto', maxWidth:'1660px', width:'100%', borderColor:"#5D534A", minHeight:"50px", fontSize:"1.1rem", padding:'10px 0'}}>
-        <Menu.Item>
+        <Menu.Item key="app-title">
           <Text
             textAlign="center"
             size="30px"
@@ -40,15 +40,10 @@ function Navbar() {
               <option value="jp">Japanese</option>
             </select>
         </Menu.Item>
-
-        <Menu.Item disable style={{ marginLeft: 'auto' }}>
-        </Menu.Item>
-
-
-      
+        
         {auth.token ? (
         <>       
-          <Menu.Item key="dashboard">
+          <Menu.Item key="dashboard" style={{ marginLeft: 'auto' }}>
             <Link to="/dashboard">
               <FormattedMessage
                     id="menu_bar.nav.dashboard"
@@ -68,7 +63,7 @@ function Navbar() {
         </> 
         ) : (
           <>
-          <Menu.Item key="register">
+          <Menu.Item key="register" style={{ marginLeft: 'auto' }}>
             <Link to="/register">
               <FormattedMessage
                 id="menu_bar.nav.register"

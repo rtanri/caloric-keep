@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useCookies } from "react-cookie";
-import { firebaseApp } from './firebase/firebase'
 
 // start initializing the context - empty object
 export const AuthContext = React.createContext({});
