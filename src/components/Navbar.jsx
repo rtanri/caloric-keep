@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { Menu, Button } from "antd";
 import { useHistory, Link } from "react-router-dom";
 import { FormattedMessage } from 'react-intl'
-import { AuthContext } from "../services/AuthProvider";
-import { TranslationContext } from '../services/TranslationProvider'
+import { AuthContext } from "../data/services/AuthProvider";
+import { TranslationContext } from '../data/services/TranslationProvider'
 import { Text } from '../linaria-components'
 
 function Navbar() {

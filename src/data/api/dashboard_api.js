@@ -1,9 +1,9 @@
-import { db } from '../../services/firebase/firebase'
+import { db } from '../services/firebase/firebase'
 import { collection, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
 
 
-export const getAllCard = async (userId, printedSMR, setCardDeck, setIsLoading) => {
-  let cardCollection = query(collection(db, "cards"), where("user_id", "==", userId));
+export const getAllCard = async (auth, printedSMR, setCardDeck, setIsLoading) => {
+  let cardCollection = query(collection(db, "cards"), where("user_id", "==", auth.authUserID));
 
   const cardSnapshot = await getDocs(cardCollection)
   let docArray = []

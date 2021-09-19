@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 import { Section } from './linaria-components';
 
-import TranslationProvider from './services/TranslationProvider'
-import AuthProvider from './services/AuthProvider';
+import TranslationProvider from './data/services/TranslationProvider'
+import AuthProvider from './data/services/AuthProvider';
 import { CookiesProvider } from 'react-cookie';
 
 import GuestOnlyRoute from './components/GuestOnlyRoute';

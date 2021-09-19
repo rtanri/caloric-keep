@@ -3,9 +3,9 @@ import { H1, Container } from '../../linaria-components'
 import { FormattedMessage } from 'react-intl'
 import { Form, Button, Input, notification } from 'antd'
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { AuthContext } from '../../services/AuthProvider';
+import { AuthContext } from '../../data/services/AuthProvider';
 
-function LoginPage(props) {
+function LoginPage() {
   const auth = useContext(AuthContext);
 
   const [isLoggingIn, setIsLoggingIn] = useState(false);

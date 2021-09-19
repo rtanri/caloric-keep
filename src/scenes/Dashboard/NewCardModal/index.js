@@ -3,7 +3,7 @@ import { Button, Form, Input, notification } from 'antd';
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { doc, setDoc } from "firebase/firestore";
 import { FormattedMessage } from 'react-intl'
-import { db } from '../../../services/firebase/firebase';
+import { db } from '../../../data/services/firebase/firebase';
 import { Text, H2, Spacer } from '../../../linaria-components';
 
 

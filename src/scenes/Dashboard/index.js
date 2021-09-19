@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import DashboardPage from './template'
-import { AuthContext } from '../../services/AuthProvider';
+import { AuthContext } from '../../data/services/AuthProvider';
 import { getAllCard } from "../../data/api/dashboard_api"
 import { Skeleton, Button } from "antd"
 import ModalNewCard from "./NewCardModal"
@@ -9,7 +9,6 @@ import { Text, Spacer, secondary } from '../../linaria-components'
 
 const Dashboard = () => {
   const auth = useContext(AuthContext)
-  let userId = auth.authUserID
   const [isLoading, setIsLoading] = useState(true)
   const [cardDeck, setCardDeck] = useState([])
   const [printedSMR, setPrintedSMR] = useState(2100)
@@ -18,19 +17,30 @@ const Dashboard = () => {
 
   useEffect(() => {
     setIsLoading(true)
+    signInUser()
     setTimeout(() => {
       fetchAllCardsData()
-    }, 2500)
+    }, 2000)
   }, [])
 
+  const signInUser = async () => {
+    const validUserId = await auth.authUserID
+    if (validUserId) {
+      console.log(`right: ${validUserId}`)
+      return true
+    } else {
+      console.log(`wrong: ${validUserId}`)
+      return false
+    }
+  }
+
   const fetchAllCardsData = () => {
-    getAllCard(userId, printedSMR, setCardDeck, setIsLoading)
+    getAllCard(auth, printedSMR, setCardDeck, setIsLoading)
   }
 
   const Add = metaRate.map(Add => Add)
   const handleMetaRateDropdown = (e) => {
     setPrintedSMR(metaRate[e.target.value])
-    fetchAllCardsData()
   }
 
   const handleAddNewCard = () => {
@@ -74,7 +84,7 @@ const Dashboard = () => {
 
       {
         openNewCardModal &&
-        <ModalNewCard closeModal={() => setOpenNewCardModal(false)} currentUserId={userId} />
+        <ModalNewCard closeModal={() => setOpenNewCardModal(false)} currentUserId={auth.authUserID} />
       }
 
       <Spacer spacing={32} />

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { IntlProvider } from 'react-intl'
 import * as R from 'ramda'
-import English from '../data/Languages/en.json'
-import Indonesia from '../data/Languages/id.json'
-import China from '../data/Languages/ch.json'
-import Japan from '../data/Languages/jp.json'
+import English from '../Languages/en.json'
+import Indonesia from '../Languages/id.json'
+import China from '../Languages/ch.json'
+import Japan from '../Languages/jp.json'
 
 export const TranslationContext = React.createContext()
 

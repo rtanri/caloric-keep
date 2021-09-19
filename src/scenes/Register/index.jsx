@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { AuthContext } from '../../services/AuthProvider'
+import { AuthContext } from '../../data/services/AuthProvider'
 import { H1, Container } from '../../linaria-components'
 import { FormattedMessage } from 'react-intl'
 import { Form, Input, Button, notification } from "antd";

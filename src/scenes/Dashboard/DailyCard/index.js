@@ -19,7 +19,6 @@ const renderMealRecord = () => {
 
 function DailyCard({ id, title, user, meal1, meal2, meal3, meal4, meal5, meal6, total, metabolism_rate }) {
   const [openModal, setOpenModal] = useState(false)
-  const [uniqueUserId, setUniqueUserId] = useState("")
   const [remain, setRemain] = useState(0)
   const [cardColor, setCardColor] = useState("")
   const COLOR_GREEN = { green }.green
@@ -28,7 +27,6 @@ function DailyCard({ id, title, user, meal1, meal2, meal3, meal4, meal5, meal6, 
   useEffect(() => {
     renderMealRecord()
     renderRemainingValue()
-    setUniqueUserId(user)
   }, [metabolism_rate])
 
   const handleOnClick = () => {
