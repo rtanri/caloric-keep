@@ -19,6 +19,12 @@ const CommonLabels = {
       defaultMessage="Meal: "
     />
   ),
+  INSTRUCTION: (
+    <FormattedMessage
+      id="card.instruction"
+      defaultMessage="( Click here to record meal )"
+    />
+  ),
 }
 
 export { CommonLabels }

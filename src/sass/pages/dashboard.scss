@@ -11,6 +11,7 @@ ul.card__meal-list{
   margin-bottom: 10px;
 }
 
+
 .card--meal-record-wrapper{
   padding-left: 10px;
   border-left: 3px dotted #E0E0E0;
@@ -29,7 +30,7 @@ ul.card__meal-list{
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 3;
 }
 
 .modal-wrapper{
@@ -45,7 +46,7 @@ ul.card__meal-list{
   display: flex;
   flex-direction: column;
   padding: 25px 40px;
-  z-index: 4;
+  z-index: 5;
   opacity: 100%;
 }
 
@@ -145,6 +146,7 @@ ul.card__meal-list{
   right: 0;
   color: #333;
   font-size: 22px;
+  z-index: 2;
 
   &:hover {
         opacity: 0.5;

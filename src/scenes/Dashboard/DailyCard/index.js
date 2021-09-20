@@ -52,9 +52,11 @@ function DailyCard({ id, title, user, allMeals, total, metabolism_rate }) {
 
           <div className="card--meal-record-wrapper">
             <ul className="card__meal-list">
-              {allMeals[0] && allMeals.map((food) => (
+              {allMeals ? allMeals.map((food) => (
                 <li>{CardLabels.MEAL} &nbsp; {food} </li>
-              ))}
+              )) :
+                <Text size="15px"> {CardLabels.INSTRUCTION}</Text>
+              }
             </ul>
           </div>
 

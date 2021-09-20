@@ -17,26 +17,32 @@ const BaseCard = styled.div`
       padding: 20px;
       margin: ${props => props.margin};
       overflow: ${props => props.margin};
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.02);
+      }
 `
 
 export const Card = ({ children, ...props }) => {
-      return <BaseCard {...props} >{children}</BaseCard>
+  return <BaseCard {...props} >{children}</BaseCard>
 }
 
 Card.propTypes = {
-      display: PropTypes.string,
-      direction: PropTypes.string,
-      maxHeight: PropTypes.string,
-      color: PropTypes.string,
-      margin: PropTypes.string,
+  display: PropTypes.string,
+  direction: PropTypes.string,
+  maxHeight: PropTypes.string,
+  color: PropTypes.string,
+  margin: PropTypes.string,
 }
 
 Card.defaultProps = {
-      display: 'flex',
-      direction: 'column',
-      maxHeight: 'auto',
-      color: white,
-      margin: '0 20px 20px 0',
+  display: 'flex',
+  direction: 'column',
+  maxHeight: 'auto',
+  color: white,
+  margin: '0 20px 20px 0',
 }
 
 

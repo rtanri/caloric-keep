@@ -25,5 +25,6 @@
       "dashboard.button.new_card":"添加新卡",
       "card.total_eaten":"总吃掉: ",
       "card.remaining":"其余的: ",
-      "card.meal":"消耗: "
+      "card.meal":"消耗: ",
+      "card.instruction":"( 点击这里记录用餐 )"
 }

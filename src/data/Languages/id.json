@@ -25,5 +25,6 @@
       "dashboard.button.new_card":"Buat Kartu Baru",
       "card.total_eaten":"Sudah Makan: ",
       "card.remaining":"Tersisa: ",
-      "card.meal":"Konsumsi: "
+      "card.meal":"Konsumsi: ",
+      "card.instruction":"( Tekan disini untuk catat konsumsi )"
 }
