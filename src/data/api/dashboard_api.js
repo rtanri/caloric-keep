@@ -19,7 +19,6 @@ export const getAllCard = async (auth, printedSMR, setCardDeck, setIsLoading) =>
       let foodData = []
 
       if (mealArray[0]) {
-
         for (const key of mealArray) {
           foodData.push(`${key.name} (${key.calories})`)
           total += parseInt(key.calories);
@@ -32,11 +31,7 @@ export const getAllCard = async (auth, printedSMR, setCardDeck, setIsLoading) =>
         title: currentCard.title,
         user: currentCard.user_id,
         total: total,
-        meal1: foodData[0],
-        meal2: foodData[1],
-        meal3: foodData[2],
-        meal4: foodData[3],
-        meal5: foodData[4],
+        allMeals: foodData,
       })
       return;
     }

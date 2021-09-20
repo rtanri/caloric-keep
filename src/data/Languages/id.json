@@ -22,5 +22,8 @@
           "value": "rate"
         }
       ],
-      "dashboard.button.new_card":"Buat Kartu Baru"
+      "dashboard.button.new_card":"Buat Kartu Baru",
+      "card.total_eaten":"Sudah Makan: ",
+      "card.remaining":"Tersisa: ",
+      "card.meal":"Konsumsi: "
 }

@@ -1,6 +1,6 @@
-.daily-card__span--line-break::before{
-  content:"\a";
-  white-space: pre;
+ul.card__meal-list{
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .hidden{

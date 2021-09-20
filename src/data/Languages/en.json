@@ -22,5 +22,8 @@
           "value": "rate"
         }
       ],
-      "dashboard.button.new_card":"Add New Card"
+      "dashboard.button.new_card":"Add New Card",
+      "card.total_eaten":"Total eaten: ",
+      "card.remaining":"Remaining: ",
+      "card.meal":"Meal: "
 }

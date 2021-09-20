@@ -22,5 +22,8 @@
           "value": "rate"
         }
       ],
-      "dashboard.button.new_card":"新しいカードを追加する"
+      "dashboard.button.new_card":"新しいカードを追加する",
+      "card.total_eaten":"総食べ量: ",
+      "card.remaining":"残り: ",
+      "card.meal":"食事: "
 }

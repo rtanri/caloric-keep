@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { primary } from '../Colors'
 
 const BaseText = styled.div`
-    font-family: ${props => props.fontFamily}, arial, sans-serif;
-    font-weight: ${props => props.weight};
+    font-family: ${props => props.fontFamily}, Roboto, sans-serif;
+    font-weight: ${props => props.fontWeight};
     font-size: ${props => props.size};
     line-height: ${props => props.lineHeight};
     color: ${props => props.color};
@@ -31,7 +31,7 @@ export const createTextComponent = (name, textProps = {}) => {
 
 Text.propTypes = {
   fontFamily: PropTypes.string,
-  weight: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900]),
+  fontWeight: PropTypes.oneOf([100, 200, 300, 400, 500, 600, 700, 800, 900]),
   size: PropTypes.string,
   lineHeight: PropTypes.string,
   margin: PropTypes.string,
@@ -42,7 +42,7 @@ Text.propTypes = {
 
 Text.defaultProps = {
   fontFamily: 'Roboto',
-  weight: 400,
+  fontWeight: 400,
   size: '18px',
   lineHeight: '2rem',
   color: primary,

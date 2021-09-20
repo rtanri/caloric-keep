@@ -16,12 +16,7 @@ const DashboardPage = (props) => {
               key={card.key}
               id={card.id}
               user={card.user}
-              meal1={card.meal1}
-              meal2={card.meal2}
-              meal3={card.meal3}
-              meal4={card.meal4}
-              meal5={card.meal5}
-              meal6={card.meal6}
+              allMeals={card.allMeals}
               total={card.total}
               metabolism_rate={props.printedSMR}
             />
