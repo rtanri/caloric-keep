@@ -15,7 +15,6 @@ export default function AuthProvider({ children }) {
 
   const [cookies, setCookie, removeCookie] = useCookies(["auth_token"]);
   const [token, setToken] = useState(null);
-  // const [authUser, setAuthUser] = useState(null);
   const [authUserID, setAuthUserID] = useState(null);
 
   useEffect(() => {
@@ -30,7 +29,6 @@ export default function AuthProvider({ children }) {
       const registerResp = await createUserWithEmailAndPassword(auth, email, password);
       const tokenResp = await registerResp.user.getIdToken();
       setToken(tokenResp);
-      // setCookie(AuthTokenCookieName, tokenResp, { path: "/", maxAge: 10800 });
     } catch (err) {
       setToken(null);
       removeCookie(AuthTokenCookieName);
@@ -44,7 +42,6 @@ export default function AuthProvider({ children }) {
       const loginResp = await signInWithEmailAndPassword(auth, email, password);
       const userToken = await loginResp.user.getIdToken();
 
-      // setAuthUserID(userUID);
       setAuthUserID(loginResp.user.uid);
       setToken(userToken);
       

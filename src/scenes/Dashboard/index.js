@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react'
 import DashboardPage from './template'
 import { AuthContext } from '../../data/services/AuthProvider';
-import { getAllCard } from "../../data/api/dashboard_api"
-import { Skeleton, Button } from "antd"
+import { CardContext } from '../../data/services/CardProvider';
+import { Skeleton, Button, notification } from "antd"
 import ModalNewCard from "./NewCardModal"
 import { FormattedMessage } from 'react-intl'
 import { Text, Spacer, secondary } from '../../linaria-components'
 
 const Dashboard = () => {
   const auth = useContext(AuthContext)
+  const deck = useContext(CardContext)
   const [isLoading, setIsLoading] = useState(true)
   const [cardDeck, setCardDeck] = useState([])
   const [printedSMR, setPrintedSMR] = useState(2100)
@@ -18,24 +19,40 @@ const Dashboard = () => {
   useEffect(() => {
     setIsLoading(true)
     signInUser()
-    setTimeout(() => {
-      fetchAllCardsData()
-    }, 2000)
   }, [])
 
   const signInUser = async () => {
-    const validUserId = await auth.authUserID
-    if (validUserId) {
+    try {
+      const validUserId = await auth.authUserID
       console.log(`right: ${validUserId}`)
       return true
-    } else {
-      console.log(`wrong: ${validUserId}`)
+    }
+    catch (error) {
+      console.log(error)
       return false
+    }
+    finally {
+      console.log("fetch initial cards")
+      fetchAllCardsData()
     }
   }
 
-  const fetchAllCardsData = () => {
-    getAllCard(auth, printedSMR, setCardDeck, setIsLoading)
+  const fetchAllCardsData = async () => {
+    const getLatestCards = await deck.getLatestCardsByUserId()
+      .then(latestCardResponse => {
+        console.log("latestCardResponse")
+        console.log(latestCardResponse)
+      })
+      .catch(err => {
+        notification.error({
+          message: "Failed to update cards",
+          placement: "bottomRight",
+        })
+        console.log("Error deleting document: ", err);
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   const Add = metaRate.map(Add => Add)

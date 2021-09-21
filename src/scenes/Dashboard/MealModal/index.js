@@ -1,9 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Button, Form, Input, notification } from 'antd';
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
-// import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { FormattedMessage } from 'react-intl'
-// import { db } from '../../../data/services/firebase/firebase';
 import { Text, H2, Spacer } from '../../../linaria-components';
 import { CardContext } from '../../../data/services/CardProvider';
 

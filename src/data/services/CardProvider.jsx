@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { db } from './firebase/firebase'
 import {
   collection,
@@ -11,16 +11,69 @@ import {
   updateDoc,
   arrayUnion
 } from "firebase/firestore";
+import { AuthContext } from './AuthProvider';
 
 export const CardContext = React.createContext({});
 
 export default function CardProvider({ children }) {
+  const auth = useContext(AuthContext)
+  const [cardStorage, setCardStorage] = useState([])
+
   useEffect(() => {
   }, []);
 
-  const getCardsByUserId = () => {
-    return true
+  const getLatestCardsByUserId = async () => {
+    let cardDeckArray;
+    try {
+      let cardCollection = query(collection(db, "cards"), where("user_id", "==", auth.authUserID));
+      cardDeckArray = await getDocs(cardCollection)
+      
+    } catch (err) {
+      return false
+    } finally {
+      let docArray = []
+      cardDeckArray.forEach((doc) => {
+
+        let currentCard = doc.data()
+        currentCard.id = doc.id
+        let total = 0
+
+        if (currentCard.meals) {
+          let mealArray = currentCard.meals
+          let foodData = []
+
+          if (mealArray[0]) {
+            for (const key of mealArray) {
+              foodData.push(`${key.name} (${key.calories})`)
+              total += parseInt(key.calories);
+            }
+          }
+          
+          docArray.push({
+            key: currentCard.id,
+            id: currentCard.id,
+            title: currentCard.title,
+            user: currentCard.user_id,
+            total: total,
+            allMeals: foodData,
+          })
+        }
+
+        docArray.push({
+          key: currentCard.id,
+          id: currentCard.id,
+          title: currentCard.title,
+          user: currentCard.user_id,
+          total: total,
+        })
+      })
+      // === forEach ended
+      setCardStorage(docArray)
+      // console.log("card-storage: docArray")
+      return docArray
+    }
   };
+
 
   const saveNewCard = async (newObj) => {
     try {
@@ -58,7 +111,7 @@ export default function CardProvider({ children }) {
 
   return (
     <CardContext.Provider
-      value={{ getCardsByUserId, saveNewCard, saveMealByCardId, deleteOneCard }}
+      value={{ getLatestCardsByUserId, saveNewCard, saveMealByCardId, deleteOneCard, cardStorage }}
     >
       {children}
     </CardContext.Provider>
