@@ -6,26 +6,26 @@ import { transparent } from '../Colors'
 const BaseCardBody = styled.div`
       display: block;
       position: relative;
-      min-height: 100px;
+      height: 100%;
       font-weight: 400;
       background-color: ${transparent};
       overflow: ${props => props.overflow};
 `
 
 export const CardBody = ({ children, ...props }) => {
-      return <BaseCardBody {...props} >{children}</BaseCardBody>
+  return <BaseCardBody {...props} >{children}</BaseCardBody>
 }
 
 CardBody.propTypes = {
-      position: PropTypes.string,
-      display: PropTypes.string,
-      minHeight: PropTypes.string,
-      fontWeight: PropTypes.number,
-      backgroundColor: PropTypes.string,
-      overflow: PropTypes.string,
+  position: PropTypes.string,
+  display: PropTypes.string,
+  minHeight: PropTypes.string,
+  fontWeight: PropTypes.number,
+  backgroundColor: PropTypes.string,
+  overflow: PropTypes.string,
 }
 
 
 CardBody.defaultProps = {
-      overflow: 'auto'
+  overflow: 'auto'
 }

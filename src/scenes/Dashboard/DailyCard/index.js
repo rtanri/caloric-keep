@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Text, Card, CardHeader, CardBody, IconDelete, red, green } from '../../../linaria-components'
+import { notification } from 'antd'
 import ModalInput from '../MealModal'
-import { deleteOneCard } from "../../../data/api/dashboard_api"
+import { CardContext } from "../../../data/services/CardProvider"
 import { CommonLabels as CardLabels } from './CommonLabels'
 
 function DailyCard({ id, title, user, allMeals, total, metabolism_rate }) {
+  const deck = useContext(CardContext)
   const [openModal, setOpenModal] = useState(false)
   const [remain, setRemain] = useState(0)
   const [cardColor, setCardColor] = useState("")
   const COLOR_GREEN = { green }.green
   const COLOR_RED = { red }.red
-  console.log(allMeals)
 
   useEffect(() => {
     renderRemainingValue()
@@ -26,8 +27,24 @@ function DailyCard({ id, title, user, allMeals, total, metabolism_rate }) {
     remainingValue >= 0 ? setCardColor(COLOR_GREEN) : setCardColor(COLOR_RED)
   }
 
-  const handleCardDelete = () => {
-    deleteOneCard(id)
+  const handleCardDelete = async () => {
+    const deleteCardSuccess = await deck.deleteOneCard(id)
+      .then(resp => {
+        notification.open({
+          message: "Card is deleted",
+          placement: "bottomRight",
+        })
+      })
+      .catch(err => {
+        notification.error({
+          message: "Failed to delete card",
+          placement: "bottomRight",
+        })
+        console.log("Error deleting document: ", err);
+      })
+      .finally(async () => {
+        console.log("Fetch all the cards after delete a card")
+      })
   }
 
   return (
@@ -66,6 +83,7 @@ function DailyCard({ id, title, user, allMeals, total, metabolism_rate }) {
     </>
   )
 }
+
 
 
 export default DailyCard

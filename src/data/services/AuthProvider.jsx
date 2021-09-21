@@ -14,7 +14,6 @@ export default function AuthProvider({ children }) {
   const auth = getAuth();
 
   const [cookies, setCookie, removeCookie] = useCookies(["auth_token"]);
-  const [isLoading] = useState(true);
   const [token, setToken] = useState(null);
   // const [authUser, setAuthUser] = useState(null);
   const [authUserID, setAuthUserID] = useState(null);
@@ -69,7 +68,7 @@ export default function AuthProvider({ children }) {
   return (
     // specify the value to expose outside
     <AuthContext.Provider
-      value={{ login, logout, register, isLoading, token, authUserID }}
+      value={{ login, logout, register, token, authUserID }}
     >
       {children}
     </AuthContext.Provider>

@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Button, Form, Input, notification } from 'antd';
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+// import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { FormattedMessage } from 'react-intl'
-import { db } from '../../../data/services/firebase/firebase';
+// import { db } from '../../../data/services/firebase/firebase';
 import { Text, H2, Spacer } from '../../../linaria-components';
-
+import { CardContext } from '../../../data/services/CardProvider';
 
 const ModalInput = ({ closeModal, cardId }) => {
+  const deck = useContext(CardContext)
   const [isLoading, setIsLoading] = useState(false)
   const [uniqueCardId, setUniqueCardId] = useState("")
 
@@ -26,33 +27,29 @@ const ModalInput = ({ closeModal, cardId }) => {
 
   const onFinish = async (values) => {
     setIsLoading(true);
-    console.log("==checking state==")
-    console.log(values)
+    if (!uniqueCardId) {
+      return false
+    }
 
-    try {
-      const cardReference = doc(db, "cards", uniqueCardId);
-      await updateDoc(cardReference, {
-        meals: arrayUnion({
-          name: values.meal_name,
-          calories: values.calories,
+    const saveMealSuccess = await deck.saveMealByCardId(uniqueCardId, values)
+      .then(resp => {
+        notification.open({
+          message: "Input Success",
+          placement: "topRight",
         })
       })
-      notification.open({
-        message: "Input Success",
-        placement: "topRight",
-      });
-      setIsLoading(false);
-    }
-    catch (e) {
-      setIsLoading(false);
-      notification.warning({
-        message: "Input Failed",
-        placement: "topRight",
-      });
-      console.log("Error adding document: ", e);
-    }
-    closeModal()
-    refreshPage()
+      .catch(err => {
+        notification.error({
+          message: "Input Failed",
+          placement: "topRight",
+        });
+        console.log("Error adding document: ", err);
+      })
+      .finally(async () => {
+        setIsLoading(false);
+        console.log("Fetch all cards after update meal")
+        closeModal();
+      })
   };
 
 

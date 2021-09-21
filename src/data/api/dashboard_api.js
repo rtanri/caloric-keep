@@ -1,6 +1,8 @@
 import { db } from '../services/firebase/firebase'
 import { collection, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
+// import { auth } from
 
+// const auth = useContext(AuthContext)
 
 export const getAllCard = async (auth, printedSMR, setCardDeck, setIsLoading) => {
   let cardCollection = query(collection(db, "cards"), where("user_id", "==", auth.authUserID));
@@ -49,8 +51,6 @@ export const getAllCard = async (auth, printedSMR, setCardDeck, setIsLoading) =>
 }
 
 export const deleteOneCard = async (cardId) => {
-  console.log(cardId)
-  console.log(db)
   try {
     await deleteDoc(doc(db, "cards", cardId));
   } catch (err) {

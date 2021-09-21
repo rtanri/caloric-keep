@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { FormattedMessage } from 'react-intl'
 import { Button, Form, Input, notification } from 'antd';
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { doc, setDoc } from "firebase/firestore";
-import { FormattedMessage } from 'react-intl'
-import { db } from '../../../data/services/firebase/firebase';
-import { Text, H2, Spacer } from '../../../linaria-components';
+import { Text, H2, Spacer, Card } from '../../../linaria-components';
+import { CardContext } from "../../../data/services/CardProvider"
 
 
 const ModalNewCard = ({ closeModal, currentUserId }) => {
+  const deck = useContext(CardContext)
   const [isLoading, setIsLoading] = useState(false)
   const [uniqueUserId, setUniqueUserId] = useState("")
 
@@ -22,41 +22,26 @@ const ModalNewCard = ({ closeModal, currentUserId }) => {
 
   const onFinish = async (values) => {
     setIsLoading(true);
-    // console.log("==checking new card==")
     let newObj = {
       title: values.title,
       user_id: uniqueUserId,
-      meals: ({
-        name: values.meal_name,
-        calories: values.calories,
-      })
     }
-    // console.log(newObj)
+    const saveNewCardSuccess = await deck.saveNewCard(newObj)
 
-    try {
-      console.log(1)
-      const collectionRef = db
-      console.log(collectionRef)
-      // await setDoc(doc(db, "cards"), newObj)
-      // notification.open({
-      //   message: "New card is created",
-      //   placement: "topRight",
-      // });
-      console.log(2)
-      setIsLoading(false);
-    }
-    catch (e) {
-      console.log(3)
-      setIsLoading(false);
-      notification.warning({
-        message: "Card created failed",
-        placement: "topRight",
+    if (saveNewCardSuccess) {
+      notification.open({
+        message: "New card is saved successfully",
+        placement: "bottomRight",
       });
-      console.log("Error adding document: ", e);
+    } else {
+      notification.error({
+        message: "Failed to save card",
+        placement: "bottomRight",
+      });
     }
-    console.log(4)
+    setIsLoading(false);
     closeModal()
-  };
+  }
 
   return (
     <div>
@@ -87,7 +72,7 @@ const ModalNewCard = ({ closeModal, currentUserId }) => {
                     defaultMessage="Title"
                   />
                 </Text>
-                {/* 1st item */}
+
                 <Form.Item
                   name="title"
                   rules={[{ required: true, message: "Enter card title" }]}
@@ -100,7 +85,6 @@ const ModalNewCard = ({ closeModal, currentUserId }) => {
               </div>
             </div>
 
-            {/* submit button */}
             <div className="submit-button-wrapper">
               <Form.Item>
                 <Button

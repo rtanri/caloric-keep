@@ -10,6 +10,7 @@ import { Section } from './linaria-components';
 
 import TranslationProvider from './data/services/TranslationProvider'
 import AuthProvider from './data/services/AuthProvider';
+import CardProvider from './data/services/CardProvider'
 import { CookiesProvider } from 'react-cookie';
 
 import GuestOnlyRoute from './components/GuestOnlyRoute';
@@ -25,25 +26,27 @@ function App() {
   return (
     <CookiesProvider>
       <AuthProvider>
-        <TranslationProvider>
-          <Router>
-            <div className="App">
-              <Navbar />
-              <Section>
-                <Switch>
-                  <PrivateRoute path="/dashboard" component={Dashboard} />
-                  <GuestOnlyRoute path="/register" component={RegisterPage} />
-                  <GuestOnlyRoute path="/login" component={LoginPage} />
+        <CardProvider>
+          <TranslationProvider>
+            <Router>
+              <div className="App">
+                <Navbar />
+                <Section>
+                  <Switch>
+                    <PrivateRoute path="/dashboard" component={Dashboard} />
+                    <GuestOnlyRoute path="/register" component={RegisterPage} />
+                    <GuestOnlyRoute path="/login" component={LoginPage} />
 
-                  <Route path="/">
-                    <Redirect to="/login" component={LoginPage} />
-                  </Route>
-                </Switch>
+                    <Route path="/">
+                      <Redirect to="/login" component={LoginPage} />
+                    </Route>
+                  </Switch>
 
-              </Section>
-            </div>
-          </Router>
-        </TranslationProvider>
+                </Section>
+              </div>
+            </Router>
+          </TranslationProvider>
+        </CardProvider>
       </AuthProvider>
     </CookiesProvider>
   );

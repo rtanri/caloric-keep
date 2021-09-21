@@ -30,7 +30,7 @@ ul.card__meal-list{
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 80;
 }
 
 .modal-wrapper{
@@ -46,7 +46,7 @@ ul.card__meal-list{
   display: flex;
   flex-direction: column;
   padding: 25px 40px;
-  z-index: 5;
+  z-index: 99;
   opacity: 100%;
 }
 
@@ -146,7 +146,6 @@ ul.card__meal-list{
   right: 0;
   color: #333;
   font-size: 22px;
-  z-index: 2;
 
   &:hover {
         opacity: 0.5;
