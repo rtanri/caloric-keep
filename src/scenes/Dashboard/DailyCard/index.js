@@ -5,11 +5,12 @@ import ModalInput from '../MealModal'
 import { CardContext } from "../../../data/services/CardProvider"
 import { CommonLabels as CardLabels } from './CommonLabels'
 
-function DailyCard({ id, title, user, allMeals, total, metabolism_rate }) {
+function DailyCard({ id, title, user, allMeals, total, metabolism_rate, refreshAfterDeleteCard }) {
   const deck = useContext(CardContext)
   const [openModal, setOpenModal] = useState(false)
   const [remain, setRemain] = useState(0)
   const [cardColor, setCardColor] = useState("")
+  // const [newData, setNewData] = useState({})
   const COLOR_GREEN = { green }.green
   const COLOR_RED = { red }.red
 
@@ -17,14 +18,21 @@ function DailyCard({ id, title, user, allMeals, total, metabolism_rate }) {
     renderRemainingValue()
   }, [metabolism_rate])
 
-  const handleOnClick = () => {
-    setOpenModal(true)
-  }
-
   const renderRemainingValue = () => {
     let remainingValue = metabolism_rate - total
     setRemain(remainingValue)
     remainingValue >= 0 ? setCardColor(COLOR_GREEN) : setCardColor(COLOR_RED)
+  }
+
+  const handleCloseModal = async () => {
+    setOpenModal(false)
+    const updatedAllMeals = await deck.getOneCardData(id)
+    console.log("updatedAllMeals - in handleCloseModal")
+    console.log(updatedAllMeals)
+  }
+
+  const handleOnClick = () => {
+    setOpenModal(true)
   }
 
   const handleCardDelete = async () => {
@@ -43,7 +51,7 @@ function DailyCard({ id, title, user, allMeals, total, metabolism_rate }) {
         console.log("Error deleting document: ", err);
       })
       .finally(async () => {
-        console.log("Fetch all the cards after delete a card")
+        refreshAfterDeleteCard()
       })
   }
 
@@ -79,7 +87,11 @@ function DailyCard({ id, title, user, allMeals, total, metabolism_rate }) {
 
         </CardBody>
       </Card>
-      {openModal && <ModalInput closeModal={() => setOpenModal(false)} cardId={id} />}
+      {openModal &&
+        <ModalInput
+          closeModal={() => handleCloseModal()}
+          cardId={id}
+        />}
     </>
   )
 }

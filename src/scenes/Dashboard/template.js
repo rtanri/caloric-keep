@@ -19,6 +19,7 @@ const DashboardPage = (props) => {
               allMeals={card.allMeals}
               total={card.total}
               metabolism_rate={props.printedSMR}
+              refreshAfterDeleteCard={props.refreshAfterDeleteCard}
             />
           ))}
         </Flexbox>

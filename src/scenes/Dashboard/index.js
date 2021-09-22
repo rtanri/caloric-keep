@@ -24,7 +24,7 @@ const Dashboard = () => {
   const signInUser = async () => {
     try {
       const validUserId = await auth.authUserID
-      console.log(`right: ${validUserId}`)
+      console.log(`login success, user-id: ${validUserId}`)
       return true
     }
     catch (error) {
@@ -32,7 +32,6 @@ const Dashboard = () => {
       return false
     }
     finally {
-      console.log("fetch initial cards")
       fetchAllCardsData()
     }
   }
@@ -40,8 +39,7 @@ const Dashboard = () => {
   const fetchAllCardsData = async () => {
     const getLatestCards = await deck.getLatestCardsByUserId()
       .then(latestCardResponse => {
-        console.log("latestCardResponse")
-        console.log(latestCardResponse)
+        setCardDeck(latestCardResponse)
       })
       .catch(err => {
         notification.error({
@@ -101,7 +99,11 @@ const Dashboard = () => {
 
       {
         openNewCardModal &&
-        <ModalNewCard closeModal={() => setOpenNewCardModal(false)} currentUserId={auth.authUserID} />
+        <ModalNewCard
+          closeModal={() => setOpenNewCardModal(false)}
+          currentUserId={auth.authUserID}
+          refreshAfterAddNewCard={() => fetchAllCardsData()}
+        />
       }
 
       <Spacer spacing={32} />
@@ -109,6 +111,7 @@ const Dashboard = () => {
       <DashboardPage
         cardDeck={cardDeck}
         printedSMR={printedSMR}
+        refreshAfterDeleteCard={() => fetchAllCardsData()}
       />
     </>
   )

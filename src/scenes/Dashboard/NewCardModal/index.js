@@ -6,7 +6,7 @@ import { Text, H2, Spacer, Card } from '../../../linaria-components';
 import { CardContext } from "../../../data/services/CardProvider"
 
 
-const ModalNewCard = ({ closeModal, currentUserId }) => {
+const ModalNewCard = ({ closeModal, currentUserId, refreshAfterAddNewCard }) => {
   const deck = useContext(CardContext)
   const [isLoading, setIsLoading] = useState(false)
   const [uniqueUserId, setUniqueUserId] = useState("")
@@ -40,6 +40,7 @@ const ModalNewCard = ({ closeModal, currentUserId }) => {
       });
     }
     setIsLoading(false);
+    refreshAfterAddNewCard();
     closeModal()
   }
 

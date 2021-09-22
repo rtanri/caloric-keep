@@ -4,6 +4,7 @@ import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { FormattedMessage } from 'react-intl'
 import { Text, H2, Spacer } from '../../../linaria-components';
 import { CardContext } from '../../../data/services/CardProvider';
+import { set } from 'ramda';
 
 const ModalInput = ({ closeModal, cardId }) => {
   const deck = useContext(CardContext)
@@ -18,10 +19,6 @@ const ModalInput = ({ closeModal, cardId }) => {
     closeModal()
     setIsLoading(false);
   };
-
-  const refreshPage = () => {
-    window.location.reload()
-  }
 
   const onFinish = async (values) => {
     setIsLoading(true);
@@ -45,10 +42,10 @@ const ModalInput = ({ closeModal, cardId }) => {
       })
       .finally(async () => {
         setIsLoading(false);
-        console.log("Fetch all cards after update meal")
         closeModal();
       })
   };
+
 
 
   return (

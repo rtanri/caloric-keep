@@ -5,6 +5,7 @@ import {
   query,
   where,
   getDocs,
+  getDoc,
   deleteDoc,
   doc,
   setDoc,
@@ -57,6 +58,7 @@ export default function CardProvider({ children }) {
             total: total,
             allMeals: foodData,
           })
+          return;
         }
 
         docArray.push({
@@ -68,8 +70,7 @@ export default function CardProvider({ children }) {
         })
       })
       // === forEach ended
-      setCardStorage(docArray)
-      // console.log("card-storage: docArray")
+
       return docArray
     }
   };
@@ -86,6 +87,7 @@ export default function CardProvider({ children }) {
   };
 
   const saveMealByCardId = async (uniqueCardId, values) => {
+
     try {
       const cardReference = doc(db, "cards", uniqueCardId);
       await updateDoc(cardReference, {
@@ -100,6 +102,27 @@ export default function CardProvider({ children }) {
     }
   };
 
+  const getOneCardData = async (cardId) => {
+    let updatedAllMeals = []
+
+    try {
+      // let myCard = {}
+      let aCardCollection = doc(db, "cards", cardId);
+      let oneUpdatedCard = await getDoc(aCardCollection)
+      // myCard = oneUpdatedCard.data()
+      // console.log(myCard)
+
+      updatedAllMeals.push({
+        allMeals: oneUpdatedCard.data().meals,
+      })
+      console.log(updatedAllMeals)
+      return updatedAllMeals
+    } catch (err) {
+      console.log("1", err)
+      return false
+    }
+  }
+
   const deleteOneCard = async (cardId) => {
     try {
       await deleteDoc(doc(db, "cards", cardId));
@@ -111,7 +134,7 @@ export default function CardProvider({ children }) {
 
   return (
     <CardContext.Provider
-      value={{ getLatestCardsByUserId, saveNewCard, saveMealByCardId, deleteOneCard, cardStorage }}
+      value={{ getLatestCardsByUserId, saveNewCard, saveMealByCardId, getOneCardData, deleteOneCard, cardStorage }}
     >
       {children}
     </CardContext.Provider>
