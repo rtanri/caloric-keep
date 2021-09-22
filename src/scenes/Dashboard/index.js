@@ -111,7 +111,7 @@ const Dashboard = () => {
       <DashboardPage
         cardDeck={cardDeck}
         printedSMR={printedSMR}
-        refreshAfterDeleteCard={() => fetchAllCardsData()}
+        refreshAllCards={() => fetchAllCardsData()}
       />
     </>
   )

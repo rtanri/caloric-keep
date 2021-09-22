@@ -5,12 +5,11 @@ import ModalInput from '../MealModal'
 import { CardContext } from "../../../data/services/CardProvider"
 import { CommonLabels as CardLabels } from './CommonLabels'
 
-function DailyCard({ id, title, user, allMeals, total, metabolism_rate, refreshAfterDeleteCard }) {
+function DailyCard({ id, title, user, allMeals, total, metabolism_rate, refreshAllCards }) {
   const deck = useContext(CardContext)
   const [openModal, setOpenModal] = useState(false)
   const [remain, setRemain] = useState(0)
   const [cardColor, setCardColor] = useState("")
-  // const [newData, setNewData] = useState({})
   const COLOR_GREEN = { green }.green
   const COLOR_RED = { red }.red
 
@@ -25,10 +24,8 @@ function DailyCard({ id, title, user, allMeals, total, metabolism_rate, refreshA
   }
 
   const handleCloseModal = async () => {
+    refreshAllCards()
     setOpenModal(false)
-    const updatedAllMeals = await deck.getOneCardData(id)
-    console.log("updatedAllMeals - in handleCloseModal")
-    console.log(updatedAllMeals)
   }
 
   const handleOnClick = () => {
@@ -51,7 +48,7 @@ function DailyCard({ id, title, user, allMeals, total, metabolism_rate, refreshA
         console.log("Error deleting document: ", err);
       })
       .finally(async () => {
-        refreshAfterDeleteCard()
+        refreshAllCards()
       })
   }
 
@@ -95,7 +92,5 @@ function DailyCard({ id, title, user, allMeals, total, metabolism_rate, refreshA
     </>
   )
 }
-
-
 
 export default DailyCard
