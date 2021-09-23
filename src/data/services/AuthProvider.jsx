@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  signInAnonymously
+} from "firebase/auth";
 import { useCookies } from "react-cookie";
 
-// start initializing the context - empty object
 export const AuthContext = React.createContext({});
 const AuthTokenCookieName = "auth_token";
 const AuthUserIDCookieName = "auth_user_id";
 
-
-// to prep states before transfering to all componentns
 export default function AuthProvider({ children }) {
   
   const auth = getAuth();
@@ -36,6 +39,33 @@ export default function AuthProvider({ children }) {
     }
     return true;
   };
+  
+  const loginAsGuest = async () => {
+    let guestUserId = ""
+    try {
+      const GuestAccessResp = await signInAnonymously(auth)
+      console.log(GuestAccessResp.user)
+      const userToken = await GuestAccessResp.user.getIdToken();
+
+      console.log("GuestAccessResp.user.uid");
+      guestUserId = GuestAccessResp.user.uid
+      console.log(guestUserId);
+
+      setAuthUserID(guestUserId);
+      setToken(userToken);
+
+      setCookie(AuthTokenCookieName, userToken, { path: "/", maxAge: 10800 });
+      setCookie(AuthUserIDCookieName, guestUserId);
+      return true
+    }
+    catch (err) {
+      console.log(err)
+      return false
+    }
+    finally {
+      setAuthUserID(guestUserId)
+    }
+  }
 
   const login = async (email, password) => {
     try {
@@ -65,7 +95,7 @@ export default function AuthProvider({ children }) {
   return (
     // specify the value to expose outside
     <AuthContext.Provider
-      value={{ login, logout, register, token, authUserID }}
+      value={{ login, logout, register, loginAsGuest, token, authUserID }}
     >
       {children}
     </AuthContext.Provider>

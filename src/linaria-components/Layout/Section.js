@@ -6,6 +6,8 @@ import { transparent } from '../Colors'
 const BaseWrapper = styled.div`
       display: ${props => props.display};
       position: ${props => props.position};
+      top: ${props => props.top};
+      bottom: ${props => props.bottom};
       flex-direction: ${props => props.direction};
       justify-content: ${props => props.justifyContent};
       flex-wrap: ${props => props.wrap};
@@ -73,6 +75,8 @@ Container.propTypes = {
   radius: PropTypes.number,
   backgroundColor: PropTypes.string,
   overflow: PropTypes.string,
+  top: PropTypes.string,
+  bottom: PropTypes.string,
 }
 
 Container.defaultProps = {

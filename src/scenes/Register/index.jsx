@@ -43,7 +43,7 @@ function RegisterPage(props) {
 		setIsSigningIn(false)
 	}
 		return (
-			<Container>
+			<Container position="relative" bottom="40px">
 				<H1 textAlign="center">
 					<FormattedMessage
 						id="Register_page.header"

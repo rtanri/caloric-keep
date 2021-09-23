@@ -5,6 +5,21 @@
       "menu_bar.nav.logout": "Keluar",
       "dashboard.header": "Tempat Hitung Kalori",
       "login_page.header":"Form Masuk Pelanggan",
+            "login_page.content.divider":[
+        {
+          "type": 0,
+          "value": "--------------------------------------- ATAU ---------------------------------------"
+        },
+        {
+          "type": 1,
+          "value": "br"
+        },
+        {
+          "type": 0,
+          "value": "Masuk dengan akses tamu"
+        }
+      ],
+      "login_page.button.submit.guest":"Jadi Tamu",
       "Register_page.header":"Registrasi Pelanggan Baru",
       "modal.form.header": "Catat Makanan",
       "modal.input.meal_name":"Nama Makanan",

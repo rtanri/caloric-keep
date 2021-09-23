@@ -29,21 +29,19 @@ function App() {
         <CardProvider>
           <TranslationProvider>
             <Router>
-              <div className="App">
-                <Navbar />
-                <Section>
-                  <Switch>
-                    <PrivateRoute path="/dashboard" component={Dashboard} />
-                    <GuestOnlyRoute path="/register" component={RegisterPage} />
-                    <GuestOnlyRoute path="/login" component={LoginPage} />
+              <Navbar />
+              <Section>
+                <Switch>
+                  <PrivateRoute path="/dashboard" component={Dashboard} />
+                  <GuestOnlyRoute path="/register" component={RegisterPage} />
+                  <GuestOnlyRoute path="/login" component={LoginPage} />
 
-                    <Route path="/">
-                      <Redirect to="/login" component={LoginPage} />
-                    </Route>
-                  </Switch>
+                  <Route path="/">
+                    <Redirect to="/login" component={LoginPage} />
+                  </Route>
+                </Switch>
 
-                </Section>
-              </div>
+              </Section>
             </Router>
           </TranslationProvider>
         </CardProvider>

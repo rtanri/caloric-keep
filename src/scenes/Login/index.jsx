@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { H1, Container } from '../../linaria-components'
+import { H1, Text, Container } from '../../linaria-components'
 import { FormattedMessage } from 'react-intl'
 import { Form, Button, Input, notification } from 'antd'
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
@@ -9,6 +9,7 @@ function LoginPage() {
   const auth = useContext(AuthContext);
 
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [loadingGuest, setloadingGuest] = useState(false);
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -29,10 +30,21 @@ function LoginPage() {
       });
     }
     setIsLoggingIn(false);
-      }
+	}
+	
+	const handleGuestSignin = async () => {
+		setloadingGuest(true);
+		const guestLoginSuccess = await auth.loginAsGuest();
+		if (guestLoginSuccess) {
+      console.log("guest login is success")
+    } else {
+      console.log("guest login is failed")
+		}
+		setloadingGuest(false);
+	}
 
 			return (
-			<Container>
+			<Container position="relative" bottom="40px">
 				<H1 textAlign="center">
 					<FormattedMessage
 						id="login_page.header"
@@ -40,13 +52,10 @@ function LoginPage() {
 					/>
 				</H1>
 
-				{/* Form login */}
-
 				<Form
 					name="normal_login"
 					className="login-form"
 					initialValues={{ remember: true }}
-					// onFinish={onFinish}
 				>
 				<div className="login__form-input-wrapper">
 					<Form.Item
@@ -86,7 +95,43 @@ function LoginPage() {
                 defaultMessage="Login"
               />
 						</Button>
-							</Form.Item>
+              </Form.Item>
+              
+					<Form.Item>
+								
+					<Text textAlign="center" margin="20px 0 0 0">
+						<FormattedMessage
+							id="login_page.content.divider"
+							defaultMessage="
+							--------------------------------------- OR ---------------------------------------
+							{br}
+							Sign-in with guest access"
+							values={{
+								br: (
+									<>
+										<br/>
+										<br/>
+									</>
+								)
+							}}
+						/>
+					</Text>		
+					</Form.Item>
+							
+					<Form.Item>
+						<Button
+							className="secondary-button"
+							loading={loadingGuest}
+							disabled={loadingGuest}
+							onClick={handleGuestSignin}
+						>
+							<FormattedMessage
+                id="login_page.button.submit.guest"
+                defaultMessage="Enter"
+              />
+						</Button>
+								
+					</Form.Item>
 								</div>
 							</Form>
 						</Container>

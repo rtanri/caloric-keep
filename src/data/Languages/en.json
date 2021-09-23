@@ -5,6 +5,21 @@
       "menu_bar.nav.logout": "Logout",
       "dashboard.header": "Caloric Keep",
       "login_page.header":"Login Account",
+            "login_page.content.divider":[
+        {
+          "type": 0,
+          "value": "--------------------------------------- OR ---------------------------------------"
+        },
+        {
+          "type": 1,
+          "value": "br"
+        },
+        {
+          "type": 0,
+          "value": "Sign-in with guest access"
+        }
+      ],
+      "login_page.button.submit.guest":"Enter",
       "Register_page.header":"Register New User",
       "modal.form.header": "Record your meal",
       "modal.input.meal_name":"Meal Name",

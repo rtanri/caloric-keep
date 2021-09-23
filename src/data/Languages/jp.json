@@ -5,6 +5,21 @@
       "menu_bar.nav.logout": "ログアウト",
       "dashboard.header": "カロリーキープ",
       "login_page.header":"ログインアカウント",
+      "login_page.content.divider":[
+        {
+          "type": 0,
+          "value": "--------------------------------------- また ---------------------------------------"
+        },
+        {
+          "type": 1,
+          "value": "br"
+        },
+        {
+          "type": 0,
+          "value": "ゲストの一時的なアクセスで入る"
+        }
+      ],
+      "login_page.button.submit.guest":"入力",
       "Register_page.header":"新規ユーザーの登録",
       "modal.form.header": "食事を記録する",
       "modal.input.meal_name":"食事名",
