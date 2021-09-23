@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { db } from './firebase/firebase'
 import {
   collection,
@@ -18,10 +18,6 @@ export const CardContext = React.createContext({});
 
 export default function CardProvider({ children }) {
   const auth = useContext(AuthContext)
-  const [cardStorage, setCardStorage] = useState([])
-
-  useEffect(() => {
-  }, []);
 
   const getLatestCardsByUserId = async () => {
     let cardDeckArray;
@@ -109,16 +105,13 @@ export default function CardProvider({ children }) {
       // let myCard = {}
       let aCardCollection = doc(db, "cards", cardId);
       let oneUpdatedCard = await getDoc(aCardCollection)
-      // myCard = oneUpdatedCard.data()
-      // console.log(myCard)
 
       updatedAllMeals.push({
         allMeals: oneUpdatedCard.data().meals,
       })
-      console.log(updatedAllMeals)
       return updatedAllMeals
     } catch (err) {
-      console.log("1", err)
+      console.log(err)
       return false
     }
   }
@@ -134,7 +127,13 @@ export default function CardProvider({ children }) {
 
   return (
     <CardContext.Provider
-      value={{ getLatestCardsByUserId, saveNewCard, saveMealByCardId, getOneCardData, deleteOneCard, cardStorage }}
+      value={{
+        getLatestCardsByUserId,
+        saveNewCard,
+        saveMealByCardId,
+        getOneCardData,
+        deleteOneCard
+      }}
     >
       {children}
     </CardContext.Provider>

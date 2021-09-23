@@ -16,7 +16,7 @@
         },
         {
           "type": 0,
-          "value": "Sign-in with guest access"
+          "value": "Enter with guest access"
         }
       ],
       "login_page.button.submit.guest":"Enter",

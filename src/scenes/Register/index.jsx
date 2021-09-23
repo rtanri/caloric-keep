@@ -21,18 +21,18 @@ function RegisterPage(props) {
 		if (password !== confirmPassword) {
 			notification.error.open({
 				message: "Password and Confirm-Password is not match",
-				placement: "topRight",
+				placement: "bottomRight",
 			})
 			return
-		}
-		console.log('0')
+    }
+    
 		let registerSuccess = await auth.register(email, password);
 		
 
 		if (registerSuccess) {
 			notification.success({
 				message: "Registration Success",
-				placement: "topRight",
+				placement: "bottomRight",
 			})
 		} else {
 			notification.error({
@@ -54,7 +54,6 @@ function RegisterPage(props) {
 					name="register-form"
 					className="register-form"
 					initialValues={{ remember: true }}
-				// onFinish={onFinish}
 				>
 					<div className="login__form-input-wrapper">
 						<Form.Item

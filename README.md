@@ -1,31 +1,29 @@
-# Starter
+# Caloric Keep - [Live Demo](https://caloric-keep.herokuapp.com/login)
 
+## Starter
 - Use Node version 16.6 or more
 - Run <code>npm start</code>
 
 
-## Add-on to create Component & Pages
+## Library 
 
-- Linaria (to style in component level),
-- Ramda (utility tools for Functional Components),
+- Linaria (CSS-in-JS),
 - React Intl (multiple language converter),
-
-
-## To Manage Data
-
-- useContext
-- Redux, useSelector, useAction (potentially in future)
+- 100% React hook, useContext, useState, useEffect,
+- Firebase and Firestore (Auth and Data Storage),
 
 ## Pages
 
 #### Dashboard Page (default: English)
 ![DashboardEnglish](https://i.imgur.com/MaA2Ad2.png)
 
-#### Dashboard Page in Chinese (also available in Japanese and Indonesia)
-![ForeignDashboard](https://i.imgur.com/6yOVpF9.png)
+#### Dashboard Page in Chinese, Japanese, Indonesia
+![ChinaDashboard](https://i.imgur.com/foa6eAj.png)
+![JapanDashboard](https://i.imgur.com/1K6gcMs.png)
+![IndoDashboard](https://i.imgur.com/dMNCoS3.png)
 
 #### Login Page
-![Login](https://i.imgur.com/yJJaOwC.png)
+![Login](https://i.imgur.com/D18b7nA.png)
 
 #### Modal to Record Meals
 ![MealModal](https://i.imgur.com/aSZV8qd.png)
@@ -33,3 +31,6 @@
 #### Modal to Add New Card
 ![NewCardModal](https://i.imgur.com/jDJyhSC.png)
 
+## Still in current development:
+- Redux, useSelector, useAction;
+- Ramda (utility tools for Functional Components),

@@ -4,7 +4,6 @@ import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { FormattedMessage } from 'react-intl'
 import { Text, H2, Spacer } from '../../../linaria-components';
 import { CardContext } from '../../../data/services/CardProvider';
-import { set } from 'ramda';
 
 const ModalInput = ({ closeModal, cardId }) => {
   const deck = useContext(CardContext)
@@ -28,25 +27,13 @@ const ModalInput = ({ closeModal, cardId }) => {
 
     const saveMealSuccess = await deck.saveMealByCardId(uniqueCardId, values)
       .then(resp => {
-        notification.open({
-          message: "Input Success",
-          placement: "topRight",
-        })
-      })
-      .catch(err => {
-        notification.error({
-          message: "Input Failed",
-          placement: "topRight",
-        });
-        console.log("Error adding document: ", err);
-      })
-      .finally(async () => {
         setIsLoading(false);
         closeModal();
       })
+      .catch(err => {
+        console.log("Error adding document: ", err);
+      })
   };
-
-
 
   return (
     <div>

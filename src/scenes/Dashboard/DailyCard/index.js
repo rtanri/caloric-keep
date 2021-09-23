@@ -10,12 +10,13 @@ function DailyCard({ id, title, user, allMeals, total, metabolism_rate, refreshA
   const [openModal, setOpenModal] = useState(false)
   const [remain, setRemain] = useState(0)
   const [cardColor, setCardColor] = useState("")
+  // const [newTotal, setNewTotal] = useState(total)
   const COLOR_GREEN = { green }.green
   const COLOR_RED = { red }.red
 
   useEffect(() => {
     renderRemainingValue()
-  }, [metabolism_rate])
+  }, [metabolism_rate, total])
 
   const renderRemainingValue = () => {
     let remainingValue = metabolism_rate - total

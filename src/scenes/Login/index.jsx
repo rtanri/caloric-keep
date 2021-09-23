@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { H1, Text, Container } from '../../linaria-components'
 import { FormattedMessage } from 'react-intl'
-import { Form, Button, Input, notification } from 'antd'
+import { Form, Button, Input } from 'antd'
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { AuthContext } from '../../data/services/AuthProvider';
 
@@ -17,29 +17,12 @@ function LoginPage() {
   const handleSubmit = async () => {
     setIsLoggingIn(true);
     const loginSuccess = await auth.login(email, password);
-    
-    if (loginSuccess) {
-      notification.success({
-        message: "Login Success",
-        placement: "topRight",
-      });
-    } else {
-      notification.error({
-        message: "Login Failed",
-        placement: "topRight",
-      });
-    }
     setIsLoggingIn(false);
 	}
 	
 	const handleGuestSignin = async () => {
 		setloadingGuest(true);
 		const guestLoginSuccess = await auth.loginAsGuest();
-		if (guestLoginSuccess) {
-      console.log("guest login is success")
-    } else {
-      console.log("guest login is failed")
-		}
 		setloadingGuest(false);
 	}
 
@@ -105,7 +88,7 @@ function LoginPage() {
 							defaultMessage="
 							--------------------------------------- OR ---------------------------------------
 							{br}
-							Sign-in with guest access"
+						  Enter with guest access"
 							values={{
 								br: (
 									<>

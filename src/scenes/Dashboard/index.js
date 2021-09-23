@@ -6,6 +6,7 @@ import { Skeleton, Button, notification } from "antd"
 import ModalNewCard from "./NewCardModal"
 import { FormattedMessage } from 'react-intl'
 import { Text, Spacer, secondary } from '../../linaria-components'
+import { set } from 'ramda';
 
 const Dashboard = () => {
   const auth = useContext(AuthContext)
@@ -15,16 +16,18 @@ const Dashboard = () => {
   const [printedSMR, setPrintedSMR] = useState(2100)
   const [metaRate, setMetaRate] = useState([2100, 1800, 1650]);
   const [openNewCardModal, setOpenNewCardModal] = useState(false)
+  const [authUser, setAuthUser] = useState("")
 
   useEffect(() => {
     setIsLoading(true)
     signInUser()
-  }, [])
+  }, [authUser])
 
   const signInUser = async () => {
     try {
-      const validUserId = await auth.authUserID
-      console.log(`login success, user-id: ${validUserId}`)
+      const validUserIdResp = await auth.authUserID
+      console.log(`login success, user-id: ${validUserIdResp}`)
+      setAuthUser(validUserIdResp)
       return true
     }
     catch (error) {

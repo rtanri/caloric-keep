@@ -25,7 +25,7 @@ export default function AuthProvider({ children }) {
       setToken(cookies[AuthTokenCookieName]);
       setAuthUserID(cookies[AuthUserIDCookieName]);
     }
-  }, [cookies]);
+  }, [cookies, auth.authUserID]);
 
   const register = async (email, password) => {
     try {
@@ -44,13 +44,9 @@ export default function AuthProvider({ children }) {
     let guestUserId = ""
     try {
       const GuestAccessResp = await signInAnonymously(auth)
-      console.log(GuestAccessResp.user)
       const userToken = await GuestAccessResp.user.getIdToken();
 
-      console.log("GuestAccessResp.user.uid");
       guestUserId = GuestAccessResp.user.uid
-      console.log(guestUserId);
-
       setAuthUserID(guestUserId);
       setToken(userToken);
 
@@ -68,20 +64,25 @@ export default function AuthProvider({ children }) {
   }
 
   const login = async (email, password) => {
+    let loginUserId = ""
+
     try {
       const loginResp = await signInWithEmailAndPassword(auth, email, password);
       const userToken = await loginResp.user.getIdToken();
 
-      setAuthUserID(loginResp.user.uid);
+      loginUserId = loginResp.user.uid
       setToken(userToken);
       
       // setAuthUser(loginResp.user.toJSON());
       setCookie(AuthTokenCookieName, userToken, { path: "/", maxAge: 10800 });
-      setCookie(AuthUserIDCookieName, loginResp.user.uid);
-
+      setCookie(AuthUserIDCookieName, loginUserId);
+      
       return true;
     } catch (err) {
       return false;
+    } finally {
+      setAuthUserID(loginUserId);
+      return loginUserId
     }
   };
 

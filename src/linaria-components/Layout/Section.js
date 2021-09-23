@@ -1,7 +1,6 @@
 import React from 'react'
 import { styled } from 'linaria/react'
 import PropTypes from 'prop-types'
-import { transparent } from '../Colors'
 
 const BaseWrapper = styled.div`
       display: ${props => props.display};

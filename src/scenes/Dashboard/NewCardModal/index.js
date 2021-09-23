@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { FormattedMessage } from 'react-intl'
-import { Button, Form, Input, notification } from 'antd';
-import { EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { Text, H2, Spacer, Card } from '../../../linaria-components';
+import { Button, Form, Input } from 'antd';
+import { EditOutlined } from "@ant-design/icons";
+import { Text, H2, Spacer } from '../../../linaria-components';
 import { CardContext } from "../../../data/services/CardProvider"
 
 
@@ -27,18 +27,6 @@ const ModalNewCard = ({ closeModal, currentUserId, refreshAfterAddNewCard }) => 
       user_id: uniqueUserId,
     }
     const saveNewCardSuccess = await deck.saveNewCard(newObj)
-
-    if (saveNewCardSuccess) {
-      notification.open({
-        message: "New card is saved successfully",
-        placement: "bottomRight",
-      });
-    } else {
-      notification.error({
-        message: "Failed to save card",
-        placement: "bottomRight",
-      });
-    }
     setIsLoading(false);
     refreshAfterAddNewCard();
     closeModal()
