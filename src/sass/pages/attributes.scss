@@ -132,10 +132,6 @@ button.primary-button--full-width:focus{
       border: 1px solid #5D534A;
 }
 
-.menu-item--left{
-  position:absolute;
-  right: 10px;
-}
 
 .menu-select--styling{
   width: 200px;
@@ -146,4 +142,10 @@ button.primary-button--full-width:focus{
     color: #333;
     padding-left: 10px;
   }
+}
+
+.menu-wrapper{
+  padding: 10px 0 0 0; 
+  width: 100vw;
+  border-bottom: 1px solid #5D534A;
 }

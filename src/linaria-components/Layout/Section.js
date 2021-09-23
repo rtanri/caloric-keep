@@ -11,14 +11,20 @@ const BaseWrapper = styled.div`
       flex-wrap: ${props => props.wrap};
       align-item: ${props => props.alignItem};
       min-height: ${props => props.minHeight};
+      max-height: ${props => props.maxHeight};
       width: ${props => props.width};
       max-width: ${props => props.maxWidth};
       padding: ${props => props.padding};
       margin: ${props => props.margin};
       border: ${props => props.border};
+      border-right: ${props => props.borderRight};
+      border-left: ${props => props.borderLeft};
+      border-bottom: ${props => props.borderBottom};
+      border: ${props => props.border};
       border-color: ${props => props.borderColor};
       border-radius: ${props => (props.radius ? `${props.radius}px` : null)};
       background-color: ${props => props.backgroundColor};
+      overflow-y: ${props => props.overflow};
 `
 
 const Section = ({ children, ...props }) => {
@@ -32,6 +38,9 @@ Section.propTypes = {
   padding: PropTypes.string,
   maxWidth: PropTypes.string,
   margin: PropTypes.string,
+  border: PropTypes.string,
+  borderRight: PropTypes.string,
+  borderLeft: PropTypes.string,
 }
 
 Section.defaultProps = {
@@ -40,7 +49,7 @@ Section.defaultProps = {
   minHeight: '1px',
   margin: '0 auto',
   padding: '40px 2% 40px 2%',
-  maxWidth: '1660px',
+  maxWidth: '1800px',
   width: '100%',
 }
 
@@ -53,24 +62,23 @@ Container.propTypes = {
   position: PropTypes.string,
   display: PropTypes.string,
   minHeight: PropTypes.string,
+  width: PropTypes.string,
   padding: PropTypes.string,
   maxWidth: PropTypes.string,
+  maxHeight: PropTypes.string,
   margin: PropTypes.string,
-  border: PropTypes.string,
   borderColor: PropTypes.string,
+  borderBottom: PropTypes.string,
+  border: PropTypes.string,
   radius: PropTypes.number,
   backgroundColor: PropTypes.string,
+  overflow: PropTypes.string,
 }
 
 Container.defaultProps = {
-  display: 'block',
-  position: 'static',
   minHeight: '40px',
   margin: '0 auto',
-  padding: '20px 2%',
-  border: '3px solid #FFFFFF',
-  borderColor: transparent,
-  radius: 10,
+  padding: '20px 10%',
 }
 
 
@@ -88,6 +96,7 @@ Flexbox.propTypes = {
   padding: PropTypes.string,
   margin: PropTypes.string,
   wrap: PropTypes.oneOf(['wrap', 'nowrap', 'wrap-reverse']),
+  width: PropTypes.string,
 }
 
 Flexbox.defaultProps = {
@@ -97,7 +106,7 @@ Flexbox.defaultProps = {
   alignItem: 'left',
   minHeight: 'auto',
   padding: '0',
-  margin: '0',
+  margin: '0 auto',
   wrap: 'wrap',
 }
 

@@ -17,8 +17,19 @@ function Navbar() {
 
   return (
     <header className="site0header">
-				<Menu mode="horizontal" style={{ margin: '0 auto', maxWidth:'1660px', width:'100%', borderColor:"#5D534A", minHeight:"50px", fontSize:"1.1rem", padding:'10px 0'}}>
-        <Menu.Item key="app-title">
+      <div className="menu-wrapper">
+        <Menu mode="horizontal"
+          style={{
+            margin: '0 auto',
+            maxWidth: '1800px',
+            width: 'auto',
+            minHeight: "50px",
+            fontSize: "1.1rem",
+            borderColor: "white",
+            padding:"0 2%"
+          }}>
+          <Menu.Item key="app-title"
+          >
           <Text
             textAlign="center"
             size="30px"
@@ -51,8 +62,9 @@ function Navbar() {
               />
             </Link>
           </Menu.Item>
-          
-          <Menu.Item key="logout">
+              <Menu.Item key="logout"
+                style={{ marginRight: '5%' }}
+              >
             <Button type="danger" onClick={auth.logout}>
             <FormattedMessage
                   id="menu_bar.nav.logout"
@@ -72,7 +84,9 @@ function Navbar() {
             </Link>
           </Menu.Item>
           
-          <Menu.Item key="login" disabled className="menu-item--left">
+                <Menu.Item key="login" disabled
+                  style={{ marginRight: '5%' }}
+                >
             <Button className="primary-button smaller-button" onClick={redirectToLogin}>
               <FormattedMessage
                 id="menu_bar.nav.login"
@@ -83,10 +97,10 @@ function Navbar() {
           </>
         )}
 
-      </Menu>
-    </header>
+        </Menu>
+        </div>
+      </header>
   );
 }
 
-export default Navbar
-;
+export default Navbar;
