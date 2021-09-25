@@ -12,6 +12,13 @@
 - 100% React hook, useContext, useState, useEffect,
 - Firebase and Firestore (Auth and Data Storage),
 
+## Translation (Provider and Language Folder)
+![Translation](https://i.imgur.com/B5EQYiu.png)
+
+## Linaria Components (DIY Wordings, Cards, Layout)
+![Linaria](https://i.imgur.com/8UsZ0e5.png)
+
+
 ## Pages
 
 #### Dashboard Page (default: English)
